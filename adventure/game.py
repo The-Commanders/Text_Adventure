@@ -5,9 +5,9 @@ class Environment:
         self.name = name
         self.next = next
 
+
 # Game Logic class
 class GameLogic:
-
     def __init__(self):
         self.head = None
         self.health = 10

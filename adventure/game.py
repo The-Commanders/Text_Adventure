@@ -5,6 +5,13 @@ class Environment:
         self.name = name
         self.next = next
 
+    # method to choose a random event
+    def event(self):
+        pass
+
+
+
+
 
 # Game Logic class
 class GameLogic:

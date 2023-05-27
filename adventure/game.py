@@ -1,17 +1,9 @@
 # acts as our Node
 class Environment:
 
-    def __init__(self, name, next=None):
-        self.name = name
+    def __init__(self, data, next=None):
+        self.data = data
         self.next = next
-
-    # method to choose a random event
-    def event(self):
-        pass
-
-
-
-
 
 # Game Logic class
 class GameLogic:
@@ -23,20 +15,55 @@ class GameLogic:
         self.items = ["survival knife", "grappling hook", "rope", "med spray", "ration"]
 
     def __str__(self):
-        if self.head is None:
-            print("Linked list is empty")
-        else:
-            current = self.head
-            while current is not None:
-                print(current.name, end=" -> ")
-                current = current.next
-            print("None")
+        """
+        Lists the environments out in a string format
+        :return: A list of environments
+        """
+        current = self.head
+        ll_list = []
+        while current is not None:
+            ll_list.append(str(current.data.name))
+            current = current.next
+        return " -> ".join(["{ " + value + " }" for value in ll_list] + ["None"])
 
     # serves as our traverse method
     def traverse_environments(self):
-        pass
+        if not self.head:
+            return "There is no head"
+
+        current = self.head
+
+        while current:
+            self.trigger_event(current)
+            current = current.next
+
+    def trigger_event(self, current):
+        """
+        Triggers a random event to occur in the current environment
+        :param current: The current environment
+        :return: current environments randomly chosen event
+        """
+        current.data.event_one()
 
     # serves as our insert method
-    def add_environment(self, name):
-        pass
+    def add_environment(self, data):
+        """
+        adds an environment
+        :param data: The instance environment
+        :return:
+        """
+        new_node = Environment(data)
+        # old_head = self.head
+
+        if not self.head:
+            self.head = new_node
+        else:
+            current = self.head
+            while current.next:
+                current = current.next
+            current.next = new_node
+
+
+
+
 

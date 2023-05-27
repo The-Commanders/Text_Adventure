@@ -8,6 +8,7 @@ class Environment:
         self.data = data
         self.next = next
 
+
 # Game Logic class
 class GameLogic:
     def __init__(self):
@@ -58,7 +59,6 @@ class GameLogic:
         :return:
         """
         new_node = Environment(data)
-        # old_head = self.head
 
         if not self.head:
             self.head = new_node

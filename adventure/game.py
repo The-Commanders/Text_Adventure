@@ -1,4 +1,7 @@
 # acts as our Node
+import random
+
+
 class Environment:
 
     def __init__(self, data, next=None):
@@ -37,13 +40,15 @@ class GameLogic:
             self.trigger_event(current)
             current = current.next
 
-    def trigger_event(self, current):
+    def trigger_event(self, current=None):
         """
         Triggers a random event to occur in the current environment
         :param current: The current environment
         :return: current environments randomly chosen event
         """
-        current.data.event_one()
+        # event_list = current.data.func
+        # event_list[random.randint(0, len(event_list) - 1)]()
+        # event_list()
 
     # serves as our insert method
     def add_environment(self, data):

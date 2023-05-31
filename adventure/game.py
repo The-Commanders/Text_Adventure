@@ -11,11 +11,11 @@ class Environment:
 
 # Game Logic class
 class GameLogic:
-    def __init__(self):
+    def __init__(self, inv):
         self.head = None
         self.health = 10
         self.stamina = 10
-        self.inventory = []
+        self.inventory = [inv]
         self.items = ["survival knife", "grappling hook", "rope", "med spray", "ration"]
 
     def __str__(self):
@@ -38,21 +38,25 @@ class GameLogic:
         current = self.head
 
         while current:
-            self.trigger_event(current)
+            self.trigger_random_event(current)
+            self.update_resources(current)
             current = current.next
 
-    def trigger_event(self, current=None):
+    def trigger_random_event(self, data=None):
         """
         Triggers a random event to occur in the current environment
-        :param current: The current environment
+        :param data: The current environment
         :return: current environments randomly chosen event
         """
-        # event_list = current.data.func
-        # event_list[random.randint(0, len(event_list) - 1)]()
-        # event_list()
+        current_node = data
+        event_names = [name for name in dir(current_node) if callable(getattr(current_node, name)) and not name.startswith("__")]
+        random_event_name = random.choice(event_names)
+        random_event = getattr(current_node, random_event_name)
+        random_event()
+
 
     # serves as our insert method
-    def add_environment(self, data):
+    def add_environment(self, data=None):
         """
         adds an environment
         :param data: The instance environment
@@ -68,6 +72,16 @@ class GameLogic:
                 current = current.next
             current.next = new_node
 
+    def update_resources(self, data=None):
+        """
+        Updates the players resources after every environment
+        :param data:
+        :return: no return
+        """
+        current_node = data
+        self.health = current_node.health
+        self.stamina = current_node.stamina
+        self.inventory = current_node.inventory
 
 
 

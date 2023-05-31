@@ -94,7 +94,7 @@ class Jungle:
                 self.health -= rand_health_loss
                 print("The monkey gets angry, and  manages to free itself! It grabs a rock nearby and throws it at you!"
                       f" -{rand_health_loss} HP!")
-                break
+                break1
             elif selection == "3":
                 self.health -= 1
                 self.stamina -= 1

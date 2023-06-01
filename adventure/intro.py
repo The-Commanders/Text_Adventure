@@ -7,6 +7,7 @@ from rich.style import Style
 
 def introduction():
     console = Console()
+    game_logic = ''
     danger_style = Style(color="red", blink=True, bold=True)
     name = Prompt.ask("""
     [bold yellow]

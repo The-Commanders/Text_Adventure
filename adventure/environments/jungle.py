@@ -17,9 +17,9 @@ class Jungle:
         print("There seems to be just enough room to squeeze through, however, there is no way to tell what may be "
               "inside...")
 
-        print("1. Try to squeeze through ")
-        print("2. Find another path")
-        print("3. Cut through the vines and clear a path (requires Survival Knife)")
+        print("1. Try to squeeze through.")
+        print("2. Find another path.")
+        print("3. Cut through the vines and clear a path (requires Survival Knife).")
 
         while True:
             selection = input("Pick 1, 2 or 3\n>")

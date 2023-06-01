@@ -115,9 +115,10 @@ class RuinsFinalRoom:
     def guess_number(self):
         print("Welcome to Guess the Number!")
         secret_number = random.randint(1, 100)
-        attempts = 7
+        max_attempts = 7
+        attempts = 0
 
-        while True:
+        while attempts < max_attempts:
             guess = int(input("Guess a number between 1 and 100: "))
             attempts += 1
 
@@ -128,6 +129,9 @@ class RuinsFinalRoom:
             else:
                 print(f"Congratulations! You've guessed the number!")
                 break
+
+            if attempts == max_attempts:
+                print("Game Over!")
 
     def play_hangman(self):
         print("Welcome to Hangman!")

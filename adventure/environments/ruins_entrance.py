@@ -1,4 +1,6 @@
-from adventure.game import *
+from rich.console import Console
+
+console = Console()
 
 
 class RuinsEntrance:
@@ -33,7 +35,7 @@ class RuinsEntrance:
                 self.stamina -= 1
             break
 
-        print("Your current stamina is:", self.stamina)
+        console.print("Your current stamina is: :meat:", self.stamina)
 
     def event_two(self):
         print("As you jump into the ruins, you find yourself surrounded by scorpions. What do you do?")
@@ -54,7 +56,7 @@ class RuinsEntrance:
                 # self.health -= 3
             break
 
-        print("Your current health is:", self.health)
+        print("Your current health is: :heart:", self.health)
 
     def event_three(self):
         print("We now know you posses great strength and speed. But what about your wit? Complete one of the following "
@@ -94,8 +96,8 @@ class RuinsEntrance:
                     print("Incorrect. You've recovered some health and stamina")
             break
 
-        print("Your current health is:", self.health)
-        print("Your current stamina is:", self.stamina)
+        console.print(f"Your current health is: {' '.join([':orange_heart:' for _ in range(self.health)])}", self.health)
+        console.print(f"Your current stamina is:{' '.join([':meat_on_bone:' for _ in range(self.stamina)])}", self.stamina)
 
 
 if __name__ == "__main__":

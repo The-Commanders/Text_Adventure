@@ -1,4 +1,4 @@
-from adventure.game import *
+# from adventure.game import *
 from rich.console import Console
 from rich.prompt import Prompt
 import random
@@ -10,7 +10,8 @@ class Desert:
         self.health = 10
         self.stamina = 10
 
-    print("You arrive at the desert, the brutal heat hits you as you feel sweat run down your face.")
+    # Environment Intro
+    # print("You arrive at the desert, the brutal heat hits you as you feel sweat run down your face.")
 
     def event_one(self):
         console = Console()
@@ -36,6 +37,7 @@ Choose 1, 2, or 3""")
 Exhausted, you walk back to the path you were taking.
 This took {rand_stam_loss} stamina.
 """)
+                break
             elif choice == "2":
                 rand_stam_loss = random.randint(1, 2)
                 self.stamina -= rand_stam_loss
@@ -44,6 +46,7 @@ You continue on, not sure whether to trust your vision or not.
 The heat is is starting to get to you, but you cant give up now!
 This took {rand_stam_loss} stamina.
 """)
+                break
 
             elif choice == "3":
                 if "ration" in GameLogic().inventory:
@@ -55,6 +58,7 @@ You consumed a ration, and feel better than ever!
 You continue on through the desert with extra stamina!
 You gained {rand_stam_gain} stamina!
 """)
+                    break
                 else:
                     choice = Prompt.ask("You do not have a ration in your inventory. Please type 1 or 2.")
 

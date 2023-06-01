@@ -109,8 +109,8 @@ class Ruins_Halls:
         self.display_text("")  # Empty line for spacing
         self.display_text("You have completed the Ruin Halls scenario. Well done, adventurer!", Fore.GREEN)
 
-ruin_halls = Ruins_Halls("Ruin Halls")
-ruin_halls.play_game()
+# ruin_halls = Ruins_Halls("Ruin Halls")
+# ruin_halls.play_game()
 
 # Add the following code to prompt the user for the next challenge or to exit
 # next_challenge = input("Type 'next' for the next challenge or 'q' to exit: ")
@@ -119,7 +119,7 @@ ruin_halls.play_game()
 #     next_challenge = input("Type 'next' for the next challenge or 'q' to exit: ")
 
 # Exit the game
-print(Fore.GREEN + "Thank you for playing the game!" + Style.RESET_ALL)
+# print(Fore.GREEN + "Thank you for playing the game!" + Style.RESET_ALL)
 
 
 

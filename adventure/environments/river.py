@@ -8,12 +8,19 @@ class River:
         self.health = 10
         self.stamina = 10
         self.inventory = []
+        self.items = ["First aid spray", "Ration"]
+
 
     def display_text(self, text, color=None):
         if color:
             print(color + text + Fore.RESET)
         else:
             print(text)
+
+    def item_collection(self):
+        self.display_text("Items in the game:", Fore.CYAN)
+        for item in self.items:
+            self.display_text("- " + item, Fore.CYAN)
 
     def situation_event_one(self):
         self.display_text("You come across a wide river. How do you proceed?", Fore.CYAN)
@@ -139,7 +146,7 @@ class River:
             while attempts > 0:
                 player_guess = input("Guess the correct word: It starts with a 'S' and ends with a 't': ").lower()
                 if player_guess == word_to_guess:
-                    self.inventory.append("treasure")
+                    self.inventory.append(random.choice(self.items))
                     self.display_text("Congratulations! You guessed the correct word", Fore.GREEN)
                     break
                 else:
@@ -168,6 +175,8 @@ class River:
                 self.display_text("Invalid choice. Please enter 'next' or 'q'.", Fore.RED)
 
     def play_game(self):
+        self.item_collection()
+
         self.display_text("Welcome to the River Challenge!", Fore.MAGENTA)
 
         challenge_message = "You have embarked on the River Challenge! 🌊"

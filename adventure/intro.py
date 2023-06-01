@@ -70,8 +70,8 @@ def introduction():
         else:
             tutorial = Prompt.ask("[bold yellow]Please type [green]play[/green] or [red]quit[/red] to proceed")
 
-    game_logic = GameLogic()
-    random_items = random.sample(game_logic.items, 2)
+    item_list = ["survival knife", "grappling hook", "rope", "med spray", "ration"]
+    random_items = random.sample(item_list, 2)
     # print(game_logic.items)
     # print(random_items)
     # print(game_logic.inventory)
@@ -94,7 +94,7 @@ def introduction():
 Choice""")
     while decision:
         if decision == random_items[0]:
-            game_logic.inventory.append(random_items[0])
+            game_logic = GameLogic(decision)
             console.print("""
 [bold yellow]
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -107,7 +107,7 @@ Choice""")
             break
 
         elif decision == random_items[1]:
-            game_logic.inventory.append(random_items[1])
+            game_logic = GameLogic(decision)
             console.print("""
 [bold yellow]
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -124,6 +124,8 @@ Choice""")
             decision = Prompt.ask(f"""
 [bold yellow]Please choose either the [#1F51FF]{random_items[0]}[/#1F51FF] or [#9D00FF]{random_items[1]}[/#9D00FF]
 Choice""")
+
+    return game_logic
 
 
 if __name__ == "__main__":

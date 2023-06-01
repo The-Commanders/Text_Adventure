@@ -4,8 +4,9 @@ from rich.console import Console
 from rich.prompt import Prompt
 from rich.style import Style
 ## class imports
-from environments.jungle import Jungle
-from environments.river import River
+# from environments.jungle import Jungle
+# from environments.river import River
+from environments.desert import Desert
 
 
 def main():
@@ -21,9 +22,15 @@ def main():
     ## Anthony's testing code end
 
     ## Deiosha's testing code
+    # game = GameLogic()
+    # river = River("river")
+    # game.add_environment(river)
+    # game.traverse_environments()
+
+    ## Brenden's testing code
     game = GameLogic()
-    river = River("river")
-    game.add_environment(river)
+    desert = Desert("desert")
+    game.add_environment(desert)
     game.traverse_environments()
 
 

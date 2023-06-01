@@ -32,12 +32,23 @@ def reward_room():
     elif rand == 2:
         console.print("""
         You walk into the mysterious room, not sure what to expect.
-        Upon entering, you see a gorgeous fountain shooting 
+        Upon entering, you see a gorgeous fountain, with a shimmering
+        pool of water clear as crystal. As you take a sip from the
+        fountain, you feel your injuries heal and your pain fades
+        
+        [i #FF3131]Health[/i #FF3131] restored!
     """, style=reward_style)
 
     elif rand == 3:
         console.print("""
-        restore stamina
+        You walk into the mysterious room, not sure what to expect.
+        Upon entering, you see an old tree that stretches its branches
+        all across the room. The tree almost seems to be glowing with
+        light. Large golden fruit hang from the branches, giving off
+        a sweet aroma. As you take a bite, you feel your strength
+        rushing back into your body and your fatigue fades.
+        
+        [i #FFFF33]Stamina[/i #FFFF33] replenished!
     """, style=reward_style)
 
 

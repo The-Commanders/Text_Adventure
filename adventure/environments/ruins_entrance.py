@@ -1,3 +1,4 @@
+import random
 from rich.console import Console
 
 console = Console()
@@ -41,7 +42,7 @@ class RuinsEntrance:
         print("As you jump into the ruins, you find yourself surrounded by scorpions. What do you do?")
         print("1. Try to kill them with your survival knife.")
         print("2. Run as fast as you can into the ruins so they don't catch you.")
-        # print("3. Climb the wall back out.")
+        print("3. Climb the wall back out.")
 
         while True:
             choice = input("Enter your choice(1, 2, 3): ")
@@ -51,18 +52,18 @@ class RuinsEntrance:
             elif choice == "2":
                 print("You are one fast runner! You've made it without loosing any health.")
                 self.health -= 0
-            # elif choice == "3":
-                # print("You have fallen down the wall trying to climb back up and have hurt yourself.")
-                # self.health -= 3
+            elif choice == "3":
+                print("You have fallen down the wall trying to climb back up and have hurt yourself.")
+                self.health -= 3
             break
 
         print("Your current health is: :heart:", self.health)
 
     def event_three(self):
         print("We now know you posses great strength and speed. But what about your wit? Complete one of the following "
-              "challenges to get to the next level")
+              "challenges to get to the next level.")
         print("1. Solve the riddle")
-        print("2. Guess the country.")
+        print("2. Word association.")
         print("3. Unscramble the word.")
 
         while True:
@@ -78,14 +79,7 @@ class RuinsEntrance:
                 else:
                     print("Incorrect.")
             elif choice == "2":
-                print("If I am in Barcelona...")
-                user_input = input("...in which country am I? Enter your answer:")
-                if user_input.lower() == "spain":
-                    print("Correct! You've recovered some health and stamina")
-                    self.health += 1
-                    self.stamina += 1
-                else:
-                    print("Incorrect.")
+                self.word_association()
             elif choice == "3":
                 print("Unscramble the word: LGOVNEIRNEMT")
                 user_input = input("Enter your answer: ")
@@ -99,6 +93,31 @@ class RuinsEntrance:
 
         console.print(f"Your current health is: {' '.join([':orange_heart:' for _ in range(self.health)])}", self.health)
         console.print(f"Your current stamina is:{' '.join([':meat_on_bone:' for _ in range(self.stamina)])}", self.stamina)
+
+    def word_association(self):
+        words = {
+            "cat": ["meow", "whiskers", "purr", "feline"],
+            "dog": ["bark", "tail", "play", "canine"],
+            "jungle": ["tribe", "trees", "rain", "danger"],
+            "monkey": ["banana", "jungle", "tail", "steal"]
+        }
+
+        word = random.choice(list(words.keys()))
+        associations = words[word]
+
+        print("Think of a word associated with:", word)
+        print("Enter your association:")
+
+        while True:
+            association = input("> ")
+
+            if association in associations:
+                print("Correct association!")
+                self.health += 1
+                self.stamina += 1
+                break
+            else:
+                print("Incorrect association.")
 
 
 if __name__ == "__main__":

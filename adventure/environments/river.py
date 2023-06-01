@@ -208,6 +208,7 @@ class River:
 
         self.prompt_continue()
 
+
 if __name__ == "__main__":
     river = River("Amazon")
     river.situation_event_one()

@@ -11,11 +11,11 @@ class Environment:
 
 # Game Logic class
 class GameLogic:
-    def __init__(self, inv):
+    def __init__(self, starting_item):
         self.head = None
         self.health = 10
         self.stamina = 10
-        self.inventory = [inv]
+        self.inventory = [starting_item]
         self.items = ["survival knife", "grappling hook", "rope", "med spray", "ration"]
 
     def __str__(self):

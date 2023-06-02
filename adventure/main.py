@@ -17,24 +17,26 @@ from intro import introduction
 def main():
 
     # Anthony's testing code' start
-    game = introduction()
+    # game = introduction()
+    game = GameLogic('survival knife')
     jungle = Jungle("jungle")
-    desert = Desert("desert")
-    river = River("river")
-    ruins_ent = RuinsEntrance("ruins_entrance")
-    ruins_hall = Ruins_Halls("ruins_halls")
-    ruins_fr = RuinsFinalRoom("final_room")
-    envs = [jungle, river, desert, ruins_ent, ruins_hall, ruins_fr]
-    # game.add_environment(jungle)
+    # desert = Desert("desert")
+    # river = River("river")
+    # ruins_ent = RuinsEntrance("ruins_entrance")
+    # ruins_hall = Ruins_Halls("ruins_halls")
+    # ruins_fr = RuinsFinalRoom("final_room")
+    # envs = [jungle, river, desert, ruins_ent, ruins_hall, ruins_fr]
+    game.add_environment(jungle)
     # game.add_environment(river)
     # game.add_environment(desert)
     # game.add_environment(ruins_ent)
     # game.add_environment(ruins_hall)
     # game.add_environment(ruins_fr)
 
-    for env in envs:
-        game.add_environment(env)
+    # for env in envs:
+    #     game.add_environment(env)
     game.traverse_environments()
+    # game.game_over()
     # game.trigger_random_event(jungle)
     # game.trigger_random_event(river)
     # game.trigger_random_event(desert)
@@ -42,8 +44,8 @@ def main():
     # game.trigger_random_event(ruins_hall)
     # game.trigger_random_event(ruins_fr)
     # print(f"this is an instance of Jungle: {jungle}")
-    print(game)
-    str(game)
+    # print(game)
+    # str(game)
     # game.traverse_environments()
     # Anthony's testing code end
 

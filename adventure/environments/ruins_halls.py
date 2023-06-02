@@ -7,6 +7,8 @@ class Ruins_Halls:
         self.stamina = 10
         self.health = 10
         self.inventory = []
+        self.items = ["First aid spray", "Ration"]
+
 
     def display_text(self, text, color=None):
         if color:
@@ -68,7 +70,7 @@ class Ruins_Halls:
         if choice == '1':
             self.stamina -= random.randint(1, 2)
             print(Fore.GREEN + "You search the surroundings and find a key hidden nearby. Your stamina decreases slightly." + Style.RESET_ALL)
-            self.inventory.append("Door Key")
+            self.inventory.append(random.choice(self.items))
         elif choice == '2':
             self.health -= random.randint(2, 3)
             print(Fore.RED + "You try to pick the lock but accidentally break your lockpick. In the process, you injure yourself, and your health decreases." + Style.RESET_ALL)

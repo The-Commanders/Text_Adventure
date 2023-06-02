@@ -74,8 +74,10 @@ class RuinsEntrance:
                 if user_input.lower() == "candle":
                     print("Correct! You've recovered some health and stamina")
                     self.inventory.append(random.choice(self.items))
+
                     self.health += 1
                     self.stamina += 1
+
                 else:
                     print("Incorrect.")
             elif choice == "2":

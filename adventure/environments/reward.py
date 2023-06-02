@@ -25,7 +25,7 @@ def reward_room():
         The room is nicely decorated with many different cave paintings,
         perhaps describing the culture of the people who live in the
         jungle? In the center of the room stands an offering bowl.
-        You peer inside to find a [i #1F51FF]item[/i #1F51FF] inside! Just your luck. 
+        You peer inside to find a [i #9D00FF]item[/i #9D00FF] inside! Just your luck. 
     
     """, style=reward_style)
 

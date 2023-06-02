@@ -86,7 +86,7 @@ def introduction():
  | interested in. But here's the catch, you can only bring one.                       |
  |                                                                                    |
  |                                                                                    |
- | Please choose either the [i #1F51FF]{random_items[0]}[/i #1F51FF] or [#9D00FF]{random_items[1]}[/#9D00FF] to bring with you, 
+ | Please choose either the [i #1F51FF]{random_items[0]}[/i #1F51FF] or [i #9D00FF]{random_items[1]}[/i #9D00FF] to bring with you, 
  | they could be the difference between life and death out there, choose wisely...    |
  |                                                                                    |
   \                                                                                  /

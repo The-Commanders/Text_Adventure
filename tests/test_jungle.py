@@ -1,4 +1,7 @@
+import pytest
+from adventure.game import InvalidDataTypeError
 from adventure.environments.jungle import Jungle
+
 
 def test_jungle_name():
 
@@ -8,7 +11,11 @@ def test_jungle_name():
 
     assert actual == expected
 
+
 def test_jungle_name_int():
-    pass
+    with pytest.raises(InvalidDataTypeError) as e:
+        jungle = Jungle(1)
+    assert str(e.value) == "Data type must be a string!"
+
 
 

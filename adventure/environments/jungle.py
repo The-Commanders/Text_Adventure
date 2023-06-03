@@ -1,28 +1,33 @@
+from game import InvalidDataTypeError
+from consumables import use_item
 import random
 
 
 class Jungle:
 
     def __init__(self, name):
+        if not isinstance(name, str):
+            raise InvalidDataTypeError("Data type must be a string!")
         self.name = name
-        self.health = 10
-        self.stamina = 10
+        self.health = 8
+        self.stamina = 5
+        self.inventory = ['med spray', 'ration']
         self.description = """You arrive at the jungle, home to wildlife and indigenous tribes. Tread carefully as 
         danger could be around every corner!"""
 
     def event_one(self):
 
-        print("As you are walking through the jungle, you come across a patch of thick patch of vine blocking your "
+        print("As you are walking through the jungle, you come across a patch of thick vines blocking your "
               "path.")
         print("There seems to be just enough room to squeeze through, however, there is no way to tell what may be "
               "inside...")
 
-        print("1. Try to squeeze through.   2. Find another path.   3. Cut through the vines and clear a path (requires Survival Knife).")
-        # print("2. Find another path.")
-        # print("3. Cut through the vines and clear a path (requires Survival Knife).")
+        print("1. Try to squeeze through.")
+        print("2. Find another path.")
+        print("3. Cut through the vines and clear a path (requires Survival Knife).")
 
         while True:
-            selection = input("Pick 1, 2 or 3\n>")
+            selection = input("Pick 1, 2 or 3 or 'i' to use an item.\n>")
             if selection == "1":
                 rand_stam_loss = random.randint(1, 2)
                 self.stamina -= rand_stam_loss
@@ -37,10 +42,28 @@ class Jungle:
                       f" -{rand_health_loss} HP!")
                 break
             elif selection == "3":
-                self.health -= 2
-                print(f"You use you knife to cut through the vines. As you are cutting a snake lands on your shoulder "
-                      f"and bites you in the neck. -2 HP")
-                break
+                if "survival knife" in self.inventory:
+                    self.health -= 2
+                    print(f"You use you knife to cut through the vines. As you are cutting a snake lands on your shoulder "
+                          f"and bites you in the neck. -2 HP")
+                    break
+                else:
+                    print("You do not have a survival knife in your inventory!")
+                # added in to satisfy use item logic
+            elif selection == "i":
+                print("Please select and item you would like to use.")
+                for item in self.inventory:
+                    print(f"{self.inventory.index(item) + 1}. {item}")
+                item = input("> ")
+                if item == "med spray" and item in self.inventory:
+                    self.inventory.remove(item)
+                    use_item(item, self.health)
+                elif item == "ration" and item in self.inventory:
+                    self.inventory.remove(item)
+                    use_item(item, self.stamina)
+                else:
+                    print(f"You do not have a {item} in your inventory!")
+                continue
             else:
                 print("Please pick 1, 2, or 3.")
 
@@ -170,9 +193,11 @@ class Jungle:
             return "monkey"
             rand_stam_loss = random.randint(1, 2)
             self.stamina -= rand_stam_loss
-            
+
+
 def event_four(self):
-        print("You come across a monkey while on your journey. The monkey looks as if it has been entangled by the tree vines!")
+        print("You come across a monkey while on your journey. "
+              "The monkey looks as if it has been entangled by the tree vines!")
 
         print("1. Untangle the monkey")
         print("2. Leave the monkey there and make fun of it!")
@@ -195,11 +220,14 @@ def event_four(self):
             elif selection == "3":
                 self.health -= 1
                 self.stamina -= 1
-                print("You begin to walk away. As you are walking you hear the monkey screech! You run back to check the"
-                      f"commotion, and you the see monkey being devoured by an anaconda. It is very traumatizing... -1 HP, -1 stamina!")
+                print("You begin to walk away. As you are walking you hear the monkey screech! "
+                      "You run back to check the commotion, and you the see monkey being devoured by an anaconda. "
+                      f"It is very traumatizing... -1 HP, -1 stamina!")
                 break
             else:
                 print("Please pick 1, 2, or 3.")
+
+
 
 
 if __name__ == "__main__":

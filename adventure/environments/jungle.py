@@ -228,8 +228,6 @@ def event_four(self):
                 print("Please pick 1, 2, or 3.")
 
 
-
-
 if __name__ == "__main__":
     user_choice = Jungle("Jungle")
     user_choice.event_one()

@@ -5,6 +5,7 @@ from rich.console import Console
 console = Console()
 
 
+
 class Environment:
 
     def __init__(self, data, next=None):

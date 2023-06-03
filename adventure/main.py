@@ -35,6 +35,7 @@ def main():
 
     # for env in envs:
     #     game.add_environment(env)
+
     game.traverse_environments()
     # game.game_over()
     # game.trigger_random_event(jungle)
@@ -57,10 +58,11 @@ def main():
 
 
     ## Brenden's testing code
-#     game = GameLogic()
-#     desert = Desert("desert")
-#     game.add_environment(desert)
-#     game.traverse_environments()
+    # game = GameLogic("rope")
+    # desert = Desert("desert")
+    # game.add_environment(desert)
+    # game.traverse_environments()
+
 
 if __name__ == "__main__":
     main()

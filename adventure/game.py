@@ -1,10 +1,11 @@
-# acts as our Node
 import random
 from rich.console import Console
+
 
 console = Console()
 
 
+# acts as our Node
 class Environment:
 
     def __init__(self, data, next=None):
@@ -46,10 +47,14 @@ class GameLogic:
             # print("Current Items: ", " ".join(current.data.inventory))
             self.trigger_random_event(current.data)
             if current.data.health < 1:
+                self.update_resources(current)
                 self.game_over()
                 break
             self.update_resources(current)
             current = current.next
+        if not self.health < 1:
+            # TODO: insert ending function
+            pass
         return
 
     def trigger_random_event(self, data=None):
@@ -133,6 +138,7 @@ class GameLogic:
 ┼┼┼┼┼┼┼┼┼┼▀▀┼┼┼┼┼┼┼┼┼┼┼▀▀┼┼┼┼┼┼┼┼┼┼┼
 ┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼
 """)
+
 
 class InvalidDataTypeError(Exception):
     pass

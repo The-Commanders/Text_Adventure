@@ -1,9 +1,10 @@
 import random
+from consumables import *
 
 
 class RuinsFinalRoom:
-    def __init__(self, name):
-        self.name = name
+    def __init__(self):
+        self.name = "Ruins Final Room"
         self.health = 10
         self.stamina = 10
         self.inventory = []
@@ -27,11 +28,13 @@ class RuinsFinalRoom:
                 print("you throw your grappling hook into a sturdy structure above. The hook catches onto the surface "
                       "and you leap off the collapsing ground and swing across the room to stable ground.")
                 self.stamina -= 2
+                break
             elif choice == "2":
                 print("you notice a lower level below, so you quickly attach your grappling hook "
                       "to a secure structure and start rappelling down using the rope. Carefully descending, you "
                       "land safely on the lower level.")
                 self.stamina -= 3
+                break
             elif choice == "3":
                 print("You see there are still some stable sections of ground on some sides of the chasm, "
                       "so you use your grappling hook and rope to create a makeshift bridge. You secure the end of the "
@@ -39,7 +42,12 @@ class RuinsFinalRoom:
                       "Once your hook catches onto the ground, you tighten the create and create a stable bridge. You "
                       "carefully walk across.")
                 self.stamina -= 3
-            break
+                break
+            elif choice == "i":
+                self.health, self.stamina = item_selection(self.inventory, self.health, self.stamina)
+                continue
+            else:
+                print("Enter your choice(1, 2, 3): ")
 
         print("Your current stamina is:", self.stamina)
 
@@ -61,6 +69,7 @@ class RuinsFinalRoom:
                       "survival knife. The guardian lets out a roar of pain and temporarily loses focus, giving you "
                       "a chance to deal further damage.")
                 self.health -= 3
+                break
             elif choice == "2":
                 print("You successfully reach a position near the guardian's vulnerable spot without being detected. "
                       "You unleash a swift and precise attack, driving your survival knife into the weak area. The "
@@ -69,6 +78,7 @@ class RuinsFinalRoom:
                       "retaliates. You return to the shadows, evading the guardian's gaze and avoiding its powerful "
                       "attacks. To defeat the guardian, you repeat the above technique.")
                 self.health -= 3
+                break
             elif choice == "3":
                 print("You pick a small stone from the ground and hurl it to a corner of the room, away from your "
                       "intended path. The guardian, being vigilant, turns its head toward the sound and moves away "
@@ -77,7 +87,12 @@ class RuinsFinalRoom:
                       "you strike a powerful attack to the guardian's weak spot. The guardian lets out a roar of pain "
                       "and dies.")
                 self.health -= 1
-            break
+                break
+            elif choice == "i":
+                self.health, self.stamina = item_selection(self.inventory, self.health, self.stamina)
+                continue
+            else:
+                print("Enter your choice(1, 2, 3): ")
 
         print("Your current health is:", self.health)
 
@@ -92,24 +107,25 @@ class RuinsFinalRoom:
         print("2. Play hangman.")
 
         while True:
-            option1_completed = False
-            option2_completed = False
-
-            while True:
-                selection = input("Enter your choice(1, 2)")
-                if selection == "1":
-                    self.guess_number()
-                elif selection == "2":
-                    self.play_hangman()
-                    break
-
-            if option1_completed and option2_completed:
-                print("Congratulations! You have successfully obtained the long-lost idol, a priceless artifact hidden "
-                      "within the depths of the ancient ruins. As you hold it in your hands, a surge of power and "
-                      "accomplishment courses through your veins. You emerge from the treacherous depths, the idol "
-                      "shining brightly in your grasp, ready to share the tales of your daring adventure with those "
-                      "who await your triumphant return. The game concludes, but your legend will live on.")
+            selection = input("Enter your choice(1, 2)")
+            if selection == "1":
+                self.guess_number()
                 break
+            elif selection == "2":
+                self.play_hangman()
+                break
+            elif selection == "i":
+                self.health, self.stamina = item_selection(self.inventory, self.health, self.stamina)
+                continue
+
+            # if option1_completed and option2_completed:
+            #     print("Congratulations! You have successfully obtained the long-lost idol, a priceless artifact hidden "
+            #           "within the depths of the ancient ruins. As you hold it in your hands, a surge of power and "
+            #           "accomplishment courses through your veins. You emerge from the treacherous depths, the idol "
+            #           "shining brightly in your grasp, ready to share the tales of your daring adventure with those "
+            #           "who await your triumphant return. The game concludes, but your legend will live on.")
+
+
 
     def guess_number(self):
         print("Welcome to Guess the Number!")
@@ -175,7 +191,7 @@ class RuinsFinalRoom:
                ____
               |    |
               O    |
-             /|\\  |
+             /|\\   |
                    |
                    |
             ''',
@@ -183,7 +199,7 @@ class RuinsFinalRoom:
                ____
               |    |
               O    |
-             /|\\  |
+             /|\\   |
               |    |
                    |
     
@@ -192,7 +208,7 @@ class RuinsFinalRoom:
                ____
               |    |
               O    |
-             /|\\  |
+             /|\\   |
               |    |
               |    |
                    |
@@ -202,7 +218,7 @@ class RuinsFinalRoom:
               ____
              |    |
              O    |
-            /|\\  |
+            /|\\   |
              |    |
              |    |
             /     |
@@ -211,10 +227,10 @@ class RuinsFinalRoom:
               ____
              |    |
              O    |
-            /|\\  |
+            /|\\   |
              |    |
              |    |
-            / \\  |
+            / \\   |
                   |
             '''
     ]
@@ -254,7 +270,7 @@ class RuinsFinalRoom:
 
 
 if __name__ == "__main__":
-    user_choice = RuinsFinalRoom("Ruins Final Room")
+    user_choice = RuinsFinalRoom()
     user_choice.event_one()
     user_choice.event_two()
     user_choice.event_three()

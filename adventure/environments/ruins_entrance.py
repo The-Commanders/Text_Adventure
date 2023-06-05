@@ -153,5 +153,3 @@ if __name__ == "__main__":
     user_choice.event_one()
     user_choice.event_two()
     user_choice.event_three()
-
-

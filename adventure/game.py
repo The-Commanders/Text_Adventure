@@ -5,6 +5,7 @@ from rich.console import Console
 console = Console()
 
 
+
 # acts as our Node
 class Environment:
 

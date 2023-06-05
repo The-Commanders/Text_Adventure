@@ -1,17 +1,15 @@
-from game import InvalidDataTypeError
-from consumables import use_item
+# from game import InvalidDataTypeError
+from consumables import use_item, item_selection
 import random
 
 
 class Jungle:
 
-    def __init__(self, name):
-        if not isinstance(name, str):
-            raise InvalidDataTypeError("Data type must be a string!")
-        self.name = name
-        self.health = 8
+    def __init__(self):
+        self.name = "Jungle"
+        self.health = 5
         self.stamina = 5
-        self.inventory = ['med spray', 'ration']
+        self.inventory = ["med spray", "rope", "ration"]
         self.description = """You arrive at the jungle, home to wildlife and indigenous tribes. Tread carefully as 
         danger could be around every corner!"""
 
@@ -51,18 +49,7 @@ class Jungle:
                     print("You do not have a survival knife in your inventory!")
                 # added in to satisfy use item logic
             elif selection == "i":
-                print("Please select and item you would like to use.")
-                for item in self.inventory:
-                    print(f"{self.inventory.index(item) + 1}. {item}")
-                item = input("> ")
-                if item == "med spray" and item in self.inventory:
-                    self.inventory.remove(item)
-                    use_item(item, self.health)
-                elif item == "ration" and item in self.inventory:
-                    self.inventory.remove(item)
-                    use_item(item, self.stamina)
-                else:
-                    print(f"You do not have a {item} in your inventory!")
+                self.health, self.stamina = item_selection(self.inventory, self.health, self.stamina)
                 continue
             else:
                 print("Please pick 1, 2, or 3.")
@@ -77,7 +64,7 @@ class Jungle:
         print("3. Safely swing across the trap (requires Rope).")
 
         while True:
-            selection = input("Pick 1, 2 or 3\n>")
+            selection = input("Pick 1, 2 or 3 or 'i' to use an item.\n>")
             if selection == "1":
                 rand_stam_loss = random.randint(1, 2)
                 self.stamina -= rand_stam_loss
@@ -97,8 +84,14 @@ class Jungle:
                 self.stamina -= 2
                 print(f"With rope in hand, you toss it over a sturdy tree branch and safely swing across. ")
                 break
+            elif selection == "i":
+                self.health, self.stamina = item_selection(self.inventory, self.health, self.stamina)
+                continue
             else:
-                print("Please pick 1, 2, or 3.")
+                print("Please pick 1, 2, or 3 or 'i'.")
+        print(f"Health: {self.health}\n"
+              f"Stamina: {self.stamina}\n"
+              f"Inventory: {', '.join(self.inventory)}")
 
     def event_three(self):
         print("You are one step closer to getting out of this dangerous jungle. This difficult journey has taken a "
@@ -172,9 +165,16 @@ class Jungle:
             print("Monkey Score:", monkey_score)
 
         if player_score > monkey_score:
-            print("Congratulations! You've beaten the monkey and recovered stamina and health!")
+            if self.health < 10:
+                self.health += 1
+            if self.stamina < 10:
+                self.stamina += 1
+            print("Congratulations! You've beaten the monkey!")
+            print("+1 HP, +1 SP!")
         elif player_score < monkey_score:
-            print("Oops! Seems like the monkey beat you to Rock, Paper, Scissor and, on top of that, you lost some"
+            rand_stam_loss = random.randint(1, 2)
+            self.stamina -= rand_stam_loss
+            print(f"Oops! Seems like the monkey beat you to Rock, Paper, Scissor and, on top of that, you lost {rand_stam_loss}"
                   "stamina.")
         else:
             print("It's a tie!")
@@ -187,12 +187,8 @@ class Jungle:
                 (player_choice == 1 and monkey_choice == 0) or \
                 (player_choice == 2 and monkey_choice == 1):
             return "player"
-            self.health += 1
-            self.stamina += 1
         else:
             return "monkey"
-            rand_stam_loss = random.randint(1, 2)
-            self.stamina -= rand_stam_loss
 
 
 def event_four(self):
@@ -224,14 +220,17 @@ def event_four(self):
                       "You run back to check the commotion, and you the see monkey being devoured by an anaconda. "
                       f"It is very traumatizing... -1 HP, -1 stamina!")
                 break
+            elif selection == "i":
+                self.health, self.stamina = item_selection(self.inventory, self.health, self.stamina)
+                continue
             else:
                 print("Please pick 1, 2, or 3.")
 
 
 if __name__ == "__main__":
-    user_choice = Jungle("Jungle")
-    user_choice.event_one()
+    user_choice = Jungle()
+    # user_choice.event_one()
     user_choice.event_two()
-    user_choice.event_three()
+    # user_choice.event_three()
 
 

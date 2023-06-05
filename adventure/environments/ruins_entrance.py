@@ -1,13 +1,14 @@
 import random
 from rich.console import Console
+from consumables import *
 
 console = Console()
 
 
 class RuinsEntrance:
 
-    def __init__(self, name):
-        self.name = name
+    def __init__(self):
+        self.name = "River Entrance"
         self.health = 10
         self.stamina = 10
         self.inventory = []
@@ -23,18 +24,25 @@ class RuinsEntrance:
         print("3. Try and find the key somewhere around.")
 
         while True:
-            choice = input("Enter your choice(1, 2, 3): ")
+            choice = input("Enter your choice(1, 2, 3), enter 'i' to use an item: ")
             if choice == "1":
                 print("You managed to enter the ruins, but at a great expense. You are drained of stamina.")
                 self.stamina -= 3
+                break
             elif choice == "2":
                 print("Did you really think you would be able to pick the lock? You've made a great effort but "
                       "accomplished nothing.")
                 self.stamina -= 2
+                break
             elif choice == "3":
                 print("That was a long and unsuccessful walk. The key is nowhere to be found, just as your energy.")
                 self.stamina -= 1
-            break
+                break
+            elif choice == "i":
+                self.health, self.stamina = item_selection(self.inventory, self.health, self.stamina)
+                continue
+            else:
+                print("Enter your choice(1, 2, 3): ")
 
         console.print("Your current stamina is: :meat:", self.stamina)
 
@@ -45,17 +53,24 @@ class RuinsEntrance:
         print("3. Climb the wall back out.")
 
         while True:
-            choice = input("Enter your choice(1, 2, 3): ")
+            choice = input("Enter your choice(1, 2, 3), enter 'i' to use an item: ")
             if choice == "1":
                 print("There are way too many to kill them all and they are attacking you.")
                 self.health -= 4
+                break
             elif choice == "2":
                 print("You are one fast runner! You've made it without loosing any health.")
                 self.health -= 0
+                break
             elif choice == "3":
                 print("You have fallen down the wall trying to climb back up and have hurt yourself.")
                 self.health -= 3
-            break
+                break
+            elif choice == "i":
+                self.health, self.stamina = item_selection(self.inventory, self.health, self.stamina)
+                continue
+            else:
+                print("Enter your choice(1, 2, 3): ")
 
         print("Your current health is: :heart:", self.health)
 
@@ -67,7 +82,7 @@ class RuinsEntrance:
         print("3. Unscramble the word.")
 
         while True:
-            choice = input("Enter your choice(1, 2, 3): ")
+            choice = input("Enter your choice(1, 2, 3), enter 'i' to use an item: ")
             if choice == "1":
                 print("I’m tall when I’m young, and I’m short when I’m old.")
                 user_input = input("What am I? Enter your answer:")
@@ -77,21 +92,32 @@ class RuinsEntrance:
 
                     self.health += 1
                     self.stamina += 1
+                    break
 
                 else:
                     print("Incorrect.")
             elif choice == "2":
                 self.word_association()
+                break
             elif choice == "3":
-                print("Unscramble the word: LGOVNEIRNEMT")
-                user_input = input("Enter your answer: ")
-                if user_input.lower() == "government":
-                    print("Correct!")
-                    self.health += 1
-                    self.stamina += 1
-                else:
-                    print("Incorrect. You've recovered some health and stamina")
-            break
+                while True:
+                    print("Unscramble the word: LGOVNEIRNEMT")
+                    user_input = input("Enter your answer: ")
+                    if user_input.lower() == "government":
+                        print("Correct!")
+                        self.health += 1
+                        self.stamina += 1
+                        break
+                    else:
+                        print("Incorrect. You've recovered some health and stamina")
+                        # continue
+                break
+            elif choice == "i":
+                self.health, self.stamina = item_selection(self.inventory, self.health, self.stamina)
+                continue
+            else:
+                print("Enter your choice(1, 2, 3): ")
+
 
         console.print(f"Your current health is: {' '.join([':orange_heart:' for _ in range(self.health)])}", self.health)
         console.print(f"Your current stamina is:{' '.join([':meat_on_bone:' for _ in range(self.stamina)])}", self.stamina)
@@ -123,7 +149,7 @@ class RuinsEntrance:
 
 
 if __name__ == "__main__":
-    user_choice = RuinsEntrance("Ruins Entrance")
+    user_choice = RuinsEntrance()
     user_choice.event_one()
     user_choice.event_two()
     user_choice.event_three()

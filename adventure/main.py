@@ -1,32 +1,63 @@
-from game import *
-from intro import introduction
+# rich
 from rich.console import Console
 from rich.prompt import Prompt
 from rich.style import Style
-## class imports
+# environments
+from intro import introduction
 from environments.jungle import Jungle
 from environments.river import River
 from environments.desert import Desert
 from environments.ruins_entrance import RuinsEntrance
 from environments.ruins_halls import Ruins_Halls
 from environments.ruins_final_room import RuinsFinalRoom
-from intro import introduction
 from ending import final
+# game logic
+from game import *
+
 
 
 
 def main():
-
     # Anthony's testing code' start
     game = introduction()
     # game = GameLogic('survival knife')
-    jungle = Jungle("jungle", console.print, Prompt.ask)
-    desert = Desert("desert", console.print, Prompt.ask)
-    river = River("river")
-    ruins_ent = RuinsEntrance("ruins_entrance", console.print, Prompt.ask)
-    ruins_hall = Ruins_Halls("ruins_halls")
-    ruins_fr = RuinsFinalRoom("final_room")
+    jungle = Jungle(console.print, Prompt.ask)
+    desert = Desert(console.print, Prompt.ask)
+    river = River()
+    ruins_ent = RuinsEntrance(console.print, Prompt.ask)
+    ruins_hall = Ruins_Halls()
+    ruins_fr = RuinsFinalRoom()
     envs = [jungle, river, desert, ruins_ent, ruins_hall, ruins_fr]
+
+    # jungle = Jungle()
+    # jungle.event_two()
+    # river = River()
+    # river.event_one()
+    # river.event_two()
+    # river.event_three()
+    # desert = Desert()
+    # desert.event_one()
+    # desert.event_two()
+    # desert. event_three()
+    # ruins_ent = RuinsEntrance()
+    # ruins_ent.event_one()
+    # ruins_ent.event_two()
+    # ruins_ent.event_three()
+#     ruins_hall = Ruins_Halls()
+#     ruins_hall.event_one()
+#     ruins_hall.event_two()
+#     ruins_hall.event_three()
+
+
+    # ruins_fr = RuinsFinalRoom()
+    # ruins_fr.event_one()
+    # ruins_fr.event_two()
+    # ruins_fr.event_three()
+    # envs = [jungle, river, desert, ruins_ent, ruins_hall, ruins_fr]
+
+    # Anthony's testing code start
+    # game = GameLogic('survival knife')
+
     # game.add_environment(jungle)
     # game.add_environment(river)
     # game.add_environment(desert)
@@ -39,6 +70,7 @@ def main():
 
     game.traverse_environments()
     final(game.health, game.stamina)
+    
     # game.game_over()
     # game.trigger_random_event(jungle)
     # game.trigger_random_event(river)

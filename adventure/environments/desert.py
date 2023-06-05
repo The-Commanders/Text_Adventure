@@ -1,18 +1,20 @@
-from game import *
+# from game import *
 from rich.console import Console
 from rich.prompt import Prompt
 import random
 import time
+from consumables import use_item, item_selection
 
 
 class Desert:
-    def __init__(self, name, print, prompt):
-        self.name = name
+    def __init__(self, print, prompt):
+        self.name = "Desert"
         self.health = 10
         self.stamina = 10
         self.inventory = []
         self.print = print
         self.prompt = prompt
+
 
     def event_one(self):
         self.print("""
@@ -23,15 +25,15 @@ class Desert:
     Stopping for a moment, you see its an oasis! Palm trees as far as the eye can see, beautiful
     blue shimmering water, and coconuts filled with delicious juice.""")
 
-        choice = Prompt.ask("""
+        self.print("""
         [yellow]What will you do?
     1. Refile your stamina at the Oasis
     2. Ignore it and save your energy for more walking, your here for the treasure
     3. Eat a ration ([i #9D00FF]consumes ration[/i #9D00FF])
-    Choose 1, 2, or 3
-    Choice""")
+     Choose 1, 2, or 3 or enter "i" to use an item""")
 
-        while choice:
+        while True:
+            choice = Prompt.ask("[blue]Choice[/blue]")
             if choice == "1":
                 rand_stam_loss = random.randint(3, 5)
                 self.stamina -= rand_stam_loss
@@ -67,9 +69,11 @@ class Desert:
 [yellow]
     You do not have a [i #9D00FF]ration[/i #9D00FF] in your inventory. Please type 1 or 2.
 """)
-
+            elif choice == "i":
+                self.health, self.stamina = item_selection(self.inventory, self.health, self.stamina)
+                continue
             else:
-                choice = Prompt.ask("[yellow]Please type 1, 2, or 3")
+                self.print("[yellow]Please type 1, 2, or 3[/yellow]")
 
     def event_two(self):
         self.print("""[yellow]
@@ -80,15 +84,15 @@ class Desert:
     in a pit of quicksand! You are rapidly sinking with each second, and time is running out!
     Think quick, what will you do?""")
 
-        choice = Prompt.ask("""
+        self.print("""
         [yellow]What will you do?
     1. Dig out slowly, the more you panic the worse it will be
     2. Dig yourself out with brute force
     3. Grapple out of the sand ([i #9D00FF]requires grappling hook[/i #9D00FF])
-    Choose 1, 2, or 3
-Choice""")
+    Choose 1, 2, or 3 or enter "i" to use an item""")
 
-        while choice:
+        while True:
+            choice = self.prompt("[blue]Choice[/blue]")
             if choice == "1":
                 self.print("""
                     [yellow]You chose the safe route. As you inch out, the sand starts sinking again!
@@ -150,8 +154,11 @@ Choice""")
     You dont have the [i #9D00FF]grappling hook[/i #9D00FF] in your inventory!
     please type 1 or 2.
 """)
+            elif choice == "i":
+                self.health, self.stamina = item_selection(self.inventory, self.health, self.stamina)
+                continue
             else:
-                choice = Prompt.ask("""[yellow]
+                self.print("""[yellow]
     Please type 1, 2, or 3
 """)
 
@@ -165,15 +172,15 @@ Choice""")
     sense of direction! You start to panic but collect your thoughts. What can
     help you remember where you've been? Take a second to collect your thoughts""")
 
-        choice = Prompt.ask("""
+        self.print("""
         [yellow]What will you do?
     1. Use the sky for direction
     2. Book it in one direction
     3. Try to remember your surroundings
-    Choose 1, 2, or 3
-Choice""")
+    Choose 1, 2, or 3 or enter "i" to use an item""")
 
-        while choice:
+        while True:
+            choice = Prompt.ask("[blue]Choice[/blue]")
             if choice == "1":
                 choice_2 = Prompt.ask("""
 [yellow]
@@ -229,7 +236,7 @@ Choice""")
                 qte_strs = ["palm tree", "rock", "pyramid", "scorpion"]
                 qte_index = 0
                 while qte_index < len(qte_strs):
-                    qte = Prompt.ask(f"""
+                    qte = self.prompt(f"""
                             [b red]unscramble[/b red]""")
                     if qte == qte_strs[qte_index]:
                         qte_index += 1
@@ -245,8 +252,11 @@ Choice""")
     you must be going the right way! You continue your journey
     """)
                 break
+            elif choice == "i":
+                self.health, self.stamina = item_selection(self.inventory, self.health, self.stamina)
+                continue
             else:
-                choice = Prompt.ask("""[yellow]
+                self.print("""[yellow]
     Please type 1, 2, or 3
 """)
 
@@ -256,5 +266,5 @@ if __name__ == '__main__':
     from rich.prompt import Prompt
 
     console = Console()
-    env = Desert("desert", console.print, Prompt.ask)
+    env = Desert(console.print, Prompt.ask)
     env.event_one()

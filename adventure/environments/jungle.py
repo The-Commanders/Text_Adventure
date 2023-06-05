@@ -1,15 +1,11 @@
-from game import InvalidDataTypeError
-from consumables import use_item
+from consumables import use_item, item_selection
 import random
 
 
 
 class Jungle:
-
-    def __init__(self, name, print, prompt):
-        if not isinstance(name, str):
-            raise InvalidDataTypeError("Data type must be a string!")
-        self.name = name
+    def __init__(self, print, prompt):
+        self.name = "Jungle"
         self.health = 8
         self.stamina = 5
         self.inventory = ['med spray', 'ration']
@@ -64,25 +60,10 @@ class Jungle:
     """)
                 # added in to satisfy use item logic
             elif selection == "i":
-                self.print("""
-    Please select and item you would like to use.
-    """)
-                for item in self.inventory:
-                    print(f"{self.inventory.index(item) + 1}. {item}")
-                item = self.prompt("    [green]> ")
-                if item == "med spray" and item in self.inventory:
-                    self.inventory.remove(item)
-                    use_item(item, self.health)
-                elif item == "ration" and item in self.inventory:
-                    self.inventory.remove(item)
-                    use_item(item, self.stamina)
-                else:
-                    self.print(f"""[green]
-    You do not have a [#9D00FF]{item}[#9D00FF] in your inventory!
-    """)
+                self.health, self.stamina = item_selection(self.inventory, self.health, self.stamina)
                 continue
             else:
-                print("""[green]
+                self.print("""[green]
     Please pick 1, 2, or 3.
     """)
 
@@ -98,7 +79,9 @@ class Jungle:
     """)
 
         while True:
-            selection = self.prompt("Pick 1, 2 or 3\n>")
+            selection = self.prompt("""[green]
+    Pick 1, 2 or 3 or 'i' to use an item.
+    """)
             if selection == "1":
                 rand_stam_loss = random.randint(1, 2)
                 self.stamina -= rand_stam_loss
@@ -121,13 +104,17 @@ class Jungle:
             elif selection == "3":
                 self.stamina -= 2
                 self.print(f"""[green]
-    With rope in hand, you toss it over a sturdy tree branch and safely swing across. 
+    With rope in hand, you toss it over a sturdy tree branch and safely swing across. -[yellow]2 stamina[/yellow]
     """)
                 break
+            elif selection == "i":
+                self.health, self.stamina = item_selection(self.inventory, self.health, self.stamina)
+                continue
             else:
-                self.print("""[green]
-    Please pick 1, 2, or 3.
-    """)
+                self.print("[green]Please pick 1, 2, or 3 or 'i'.")
+        self.print(f"[green]Health: {self.health}[/green]\n"
+              f"[yellow]Stamina: {self.stamina}[/yellow]\n"
+              f"[white]Inventory: {', '.join(self.inventory)}[/white]")
 
     def event_three(self):
         self.print("""[green]
@@ -227,16 +214,21 @@ class Jungle:
     """)
 
         if player_score > monkey_score:
+            if self.health < 10:
+                self.health += 1
+            if self.stamina < 10:
+                self.stamina += 1
             self.print("""[green]
-    Congratulations! You've beaten the monkey and recovered [yellow]stamina[/yellow] and [red]health[/red]!
+    Congratulations! You've beaten the monkey and recovered [yellow] 1 stamina[/yellow] and [red] 1 health[/red]!
     """)
+            self.print("+1 HP, +1 SP!")
         elif player_score < monkey_score:
-            self.print("""[green]
-    Oops! Seems like the monkey beat you to Rock, Paper, Scissor and, on top of that,
-    you lost some [yellow]stamina[yellow].
-    """)
+            rand_stam_loss = random.randint(1, 2)
+            self.stamina -= rand_stam_loss
+            self.print(f"Oops! Seems like the monkey beat you at Rock, Paper, Scissors and, on top of that, you lost [yellow] {rand_stam_loss} stamina[yellow]"
+                  "stamina.")
         else:
-            self.print("    [green]It's a tie!")
+            self.print("[green]It's a tie!")
 
     def game_winner(self, player_choice, monkey_choice):
         if player_choice == monkey_choice:
@@ -245,12 +237,8 @@ class Jungle:
         if (player_choice == 0 and monkey_choice == 2) or \
                 (player_choice == 1 and monkey_choice == 0) or \
                 (player_choice == 2 and monkey_choice == 1):
-            self.health += 1
-            self.stamina += 1
             return "player"
         else:
-            rand_stam_loss = random.randint(1, 2)
-            self.stamina -= rand_stam_loss
             return "monkey"
 
     def event_four(self):
@@ -291,6 +279,9 @@ class Jungle:
     You run back to check the commotion, and you the see monkey being devoured by an anaconda.
     It is very traumatizing... -[red]1 HP[/red], -[yellow]1 stamina[/yellow]!""")
                 break
+            elif selection == "i":
+                self.health, self.stamina = item_selection(self.inventory, self.health, self.stamina)
+                continue
             else:
                 self.print("""[green]
     Please pick 1, 2, or 3.
@@ -298,15 +289,16 @@ class Jungle:
 
 
 if __name__ == "__main__":
-    user_choice = Jungle("Jungle")
-    user_choice.event_one()
-    user_choice.event_two()
-    user_choice.event_three()
+#     user_choice = Jungle()
+#     user_choice.event_one()
+#     user_choice.event_two()
+#     user_choice.event_three()
     from rich.console import Console
     from rich.prompt import Prompt
 
     console = Console()
-    env = Jungle("jungle", console.print, Prompt.ask)
+    env = Jungle(console.print, Prompt.ask)
     env.event_one()
+
 
 

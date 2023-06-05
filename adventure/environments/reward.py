@@ -3,7 +3,7 @@ import random
 from rich.style import Style
 
 
-def reward_room():
+def reward_room(inventory, health, stamina):
     console = Console()
     reward_style = Style(color="#1F51FF", bold=True)
     console.print("""
@@ -15,7 +15,8 @@ def reward_room():
     """, style=reward_style)
 
     rand = random.randint(1, 3)
-
+    items = ["survival knife", "grappling hook", "rope", "med spray", "ration"]
+    random_granted_item = random.choice(items)
     # game_logic = GameLogic()
     # random_item = random.sample(game_logic.items, 1)
 
@@ -25,9 +26,17 @@ def reward_room():
         The room is nicely decorated with many different cave paintings,
         perhaps describing the culture of the people who live in the
         jungle? In the center of the room stands an offering bowl.
-        You peer inside to find a [i #9D00FF]item[/i #9D00FF] inside! Just your luck. 
+        You peer inside to find a [i #9D00FF]{random_granted_item}[/i #9D00FF] inside! Just your luck. 
     
     """, style=reward_style)
+        if random_granted_item in ["survival knife", "grappling hook", "rope"] and random_granted_item in inventory and len(inventory) < 3:
+            console.print(f"You already have a {random_granted_item} in your inventory, cannot be obtained!", style=reward_style)
+        elif len(inventory) < 3:
+            inventory.append(random_granted_item)
+        else:
+            console.print("Insufficient inventory space!", style=reward_style)
+
+        return inventory, health, stamina
 
     elif rand == 2:
         console.print("""
@@ -38,6 +47,8 @@ def reward_room():
         
         [i #FF3131]Health[/i #FF3131] restored!
     """, style=reward_style)
+        health = 10
+        return inventory, health, stamina
 
     elif rand == 3:
         console.print("""
@@ -50,7 +61,9 @@ def reward_room():
         
         [i #FFFF33]Stamina[/i #FFFF33] replenished!
     """, style=reward_style)
+        stamina = 10
+        return inventory, health, stamina
 
 
 if __name__ == "__main__":
-    reward_room()
+    reward_room(["med spray", "ration"], 5, 5)

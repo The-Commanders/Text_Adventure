@@ -19,7 +19,7 @@ class GameLogic:
         self.head = None
         self.health = 10
         self.stamina = 10
-        self.inventory = [starting_item]
+        self.inventory = [starting_item, "med spray", "ration"]
         self.items = ["survival knife", "grappling hook", "rope", "med spray", "ration"]
 
     def __str__(self):

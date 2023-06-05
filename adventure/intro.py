@@ -4,6 +4,9 @@ import random
 from rich.prompt import Prompt
 from rich.style import Style
 
+colors = ["red", "blue", "green", "yellow", "purple", "black", "white"]
+random_color = random.choice(colors)
+
 
 def introduction():
     console = Console()
@@ -79,44 +82,48 @@ def introduction():
 
     decision = Prompt.ask(f"""
 [bold yellow]
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- |                                                                                    |
- |                                                                                    |
- | Welcome to Anradesha! I'm your pilot [#FF5F1F]Ishmael[/#FF5F1F]. We will be touching down in the vast |
- | jungle in just a minute. Before you leave, I have a few items you might be         |
- | interested in. But here's the catch, you can only bring one.                       |
- |                                                                                    |
- |                                                                                    |
- | Please choose either the [i #1F51FF]{random_items[0]}[/i #1F51FF] or [i #9D00FF]{random_items[1]}[/i #9D00FF] to bring with you, 
- | they could be the difference between life and death out there, choose wisely...    |
- |                                                                                    |
-  \                                                                                  /
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    |                                                                                    |
+    |                                                                                    |
+    | Welcome to Anradesha! I'm your pilot [#FF5F1F]Ishmael[/#FF5F1F]. We will be touching down in the vast |
+    | jungle in just a minute. Before you leave, I have a few items you might be         |
+    | interested in. But here's the catch, you can only bring one.                       |
+    |                                                                                    |
+    |                                                                                    |
+    | Please choose either the [i #1F51FF]{random_items[0]}[/i #1F51FF] or [i #9D00FF]{random_items[1]}[/i #9D00FF] to bring with you, 
+    | they could be the difference between life and death out there, choose wisely...    |
+    |                                                                                    |
+     \                                                                                  /
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Choice""")
     while decision:
         if decision == random_items[0]:
             game_logic = GameLogic(decision)
-            console.print("""
+            console.print(f"""
 [bold yellow]
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-|                                                                                    |
-| Good choice. Here we are, from now on, your on your own. Continue into the jungle  |
-| to start your adventure. Good luck! [#FF5F1F]Ishmael[/#FF5F1F] out!                                   |
- \                                                                                   /
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
- """)
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    |                                                                                    |
+    | Good choice. Here we are, from now on, your on your own. Continue into the jungle  |
+    | to start your adventure. And before I forget, remember the color [i {random_color}]{random_color}[/i {random_color}],                
+    |                 it will all make sense when you find the idol.                     |
+    |                           Good luck! [#FF5F1F]Ishmael[/#FF5F1F] out!                                  |
+     \                                                                                   /
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+""")
             break
 
         elif decision == random_items[1]:
             game_logic = GameLogic(decision)
-            console.print("""
+            console.print(f"""
 [bold yellow]
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-|                                                                                    |
-| Good choice. Here we are, from now on, your on your own. Continue into the jungle  |
-| to start your adventure. Good luck! [#FF5F1F]Ishmael[/#FF5F1F] out!                                   |
- \                                                                                   /
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    |                                                                                    |
+    | Good choice. Here we are, from now on, your on your own. Continue into the jungle  |
+    | to start your adventure. And before I forget, remember the color [i {random_color}]{random_color}[/i {random_color}],                
+    |                 it will all make sense when you find the idol.                     |
+    |                           Good luck! [#FF5F1F]Ishmael[/#FF5F1F] out!                                  |
+     \                                                                                   /
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 """)
             break
 

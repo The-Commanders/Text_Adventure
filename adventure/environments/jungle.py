@@ -1,5 +1,5 @@
 from game import InvalidDataTypeError
-from consumables import use_item
+from ..consumables import use_item
 import random
 
 

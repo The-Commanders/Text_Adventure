@@ -135,7 +135,7 @@ class River:
             challenge_word = "challenge"
             player_word = input("Type the word 'challenge' as fast as you can: ").lower()
             if player_word == challenge_word:
-                self.stamina -= random.randint(1, 3)
+                self.stamina += random.randint(1, 3)
                 self.display_text("Well done! You completed the typing challenge and gained some stamina.", Fore.GREEN)
             else:
                 self.stamina -= random.randint(2, 4)

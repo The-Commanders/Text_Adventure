@@ -6,91 +6,117 @@ console = Console()
 
 class RuinsEntrance:
 
-    def __init__(self, name):
+    def __init__(self, name, print, prompt):
         self.name = name
         self.health = 10
         self.stamina = 10
         self.inventory = []
         self.items = ["survival knife", "grappling hook", "rope", "med spray", "ration"]
+        self.print = print
+        self.prompt = prompt
 
     def event_one(self):
-        print("Congratulations, you've made it to the ruins. You are one step closer to getting the idol. However, in "
-              "order to get your hands on it you will have to test your strength and wit a few more times.")
-        print("It seems like the door to get into the ruins is closed and you don't have the key. How would you like"
-              "to proceed in order to gain access to the ruins? ")
-        print("1. Climb the wall using your grappling hook.")
-        print("2. Try and pick the lock with your survival knife")
-        print("3. Try and find the key somewhere around.")
+        self.print("""[#FFA500]
+    Congratulations, you've made it to the ruins. You are one step closer to getting the idol. However, in 
+    order to get your hands on it you will have to test your strength and wit a few more times.
+    It seems like the door to get into the ruins is closed and you don't have the key. How would you like
+    to proceed in order to gain access to the ruins?
+    1. Climb the wall using your grappling hook.
+    2. Try and pick the lock with your survival knife
+    3. Try and find the key somewhere around.""")
 
         while True:
-            choice = input("Enter your choice(1, 2, 3): ")
+            choice = self.prompt("""[#FFA500]
+    Enter your choice(1, 2, 3): 
+""")
             if choice == "1":
-                print("You managed to enter the ruins, but at a great expense. You are drained of stamina.")
+                self.print("""[#FFA500]
+    You managed to enter the ruins, but at a great expense. You are drained of stamina.
+    """)
                 self.stamina -= 3
             elif choice == "2":
-                print("Did you really think you would be able to pick the lock? You've made a great effort but "
-                      "accomplished nothing.")
+                self.print("""[#FFA500]
+    Did you really think you would be able to pick the lock? You've made a great effort but
+    accomplished nothing.""")
                 self.stamina -= 2
             elif choice == "3":
-                print("That was a long and unsuccessful walk. The key is nowhere to be found, just as your energy.")
+                self.print("""[#FFA500]
+    That was a long and unsuccessful walk. The key is nowhere to be found, just like your energy.""")
                 self.stamina -= 1
             break
 
-        console.print("Your current stamina is: :meat:", self.stamina)
+        # self.print("[#FFA500]Your current stamina is: :meat:", self.stamina)
 
     def event_two(self):
-        print("As you jump into the ruins, you find yourself surrounded by scorpions. What do you do?")
-        print("1. Try to kill them with your survival knife.")
-        print("2. Run as fast as you can into the ruins so they don't catch you.")
-        print("3. Climb the wall back out.")
+        self.print("""[#FFA500]
+    As you jump into the ruins, you find yourself surrounded by scorpions. What do you do?
+    "1. Try to kill them with your survival knife.
+    "2. Run as fast as you can into the ruins so they don't catch you.
+    "3. Climb the wall back out.""")
 
         while True:
-            choice = input("Enter your choice(1, 2, 3): ")
+            choice = self.prompt("""[#FFA500]
+    Enter your choice(1, 2, 3): 
+    """)
             if choice == "1":
-                print("There are way too many to kill them all and they are attacking you.")
+                self.print("""[#FFA500]
+    There are way too many to kill them all and they are attacking you.
+    """)
                 self.health -= 4
             elif choice == "2":
-                print("You are one fast runner! You've made it without loosing any health.")
+                self.print("""[#FFA500]
+    You are one fast runner! You've made it without loosing any health.
+    """)
                 self.health -= 0
             elif choice == "3":
-                print("You have fallen down the wall trying to climb back up and have hurt yourself.")
+                self.print("""[#FFA500]
+    You have fallen down the wall trying to climb back up and have hurt yourself.
+    """)
                 self.health -= 3
             break
 
-        print("Your current health is: :heart:", self.health)
+        # print("Your current health is: :heart:", self.health)
 
     def event_three(self):
-        print("We now know you posses great strength and speed. But what about your wit? Complete one of the following "
-              "challenges to get to the next level.")
-        print("1. Solve the riddle")
-        print("2. Word association.")
-        print("3. Unscramble the word.")
+        print("""[#FFA500]
+    We now know you posses great strength and speed. But what about your wit?
+    Complete one of the following challenges to get to the next level.
+    1. Solve the riddle
+    2. Word association.
+    3. Unscramble the word.""")
 
         while True:
-            choice = input("Enter your choice(1, 2, 3): ")
+            choice = self.prompt("""[#FFA500]
+    Enter your choice(1, 2, 3): 
+    """)
             if choice == "1":
-                print("I’m tall when I’m young, and I’m short when I’m old.")
-                user_input = input("What am I? Enter your answer:")
+                self.print("I’m tall when I’m young, and I’m short when I’m old.")
+                user_input = self.prompt("""[#FFA500]
+    What am I? Enter your answer:
+    """)
                 if user_input.lower() == "candle":
-                    print("Correct! You've recovered some health and stamina")
+                    self.print("[green]Correct! You've recovered some health and stamina")
                     self.inventory.append(random.choice(self.items))
 
                     self.health += 1
                     self.stamina += 1
 
                 else:
-                    print("Incorrect.")
+                    self.print("[red]Incorrect.")
             elif choice == "2":
                 self.word_association()
             elif choice == "3":
-                print("Unscramble the word: LGOVNEIRNEMT")
-                user_input = input("Enter your answer: ")
+                self.print("""[#FFA500]
+    Unscramble the word: LGOVNEIRNEMT""")
+                user_input = self.prompt("""[#FFA500]
+    Enter your answer: 
+    """)
                 if user_input.lower() == "government":
-                    print("Correct!")
+                    print("[green]Correct!")
                     self.health += 1
                     self.stamina += 1
                 else:
-                    print("Incorrect. You've recovered some health and stamina")
+                    print("[red]Incorrect[/red]. You've recovered some health and stamina")
             break
 
         console.print(f"Your current health is: {' '.join([':orange_heart:' for _ in range(self.health)])}", self.health)
@@ -127,3 +153,9 @@ if __name__ == "__main__":
     user_choice.event_one()
     user_choice.event_two()
     user_choice.event_three()
+    from rich.console import Console
+    from rich.prompt import Prompt
+
+    console = Console()
+    env = RuinsEntrance("ruins_entrance", console.print, Prompt.ask)
+    env.event_one()

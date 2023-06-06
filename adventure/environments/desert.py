@@ -1,4 +1,3 @@
-# from game import *
 from rich.console import Console
 from rich.prompt import Prompt
 import random
@@ -33,7 +32,7 @@ class Desert:
      Choose 1, 2, or 3 or enter "i" to use an item""")
 
         while True:
-            choice = Prompt.ask("[blue]Choice[/blue]")
+            choice = self.prompt("[blue]Choice[/blue]")
             if choice == "1":
                 rand_stam_loss = random.randint(3, 5)
                 self.stamina -= rand_stam_loss
@@ -65,7 +64,7 @@ class Desert:
 """)
                     break
                 else:
-                    choice = Prompt.ask("""
+                    self.print("""
 [yellow]
     You do not have a [i #9D00FF]ration[/i #9D00FF] in your inventory. Please type 1 or 2.
 """)
@@ -104,7 +103,7 @@ class Desert:
                 qte_strs = ["dig", "push", "dig"]
                 qte_index = 0
                 while qte_index < len(qte_strs):
-                    qte = Prompt.ask(f"""
+                    qte = self.prompt(f"""
             [b red]{qte_strs[qte_index]}[/b red]""")
                     if qte == qte_strs[qte_index]:
                         qte_index += 1
@@ -149,7 +148,7 @@ class Desert:
                     break
 
                 else:
-                    choice = Prompt.ask("""
+                    self.print("""
 [bold yellow]
     You dont have the [i #9D00FF]grappling hook[/i #9D00FF] in your inventory!
     please type 1 or 2.
@@ -180,9 +179,9 @@ class Desert:
     Choose 1, 2, or 3 or enter "i" to use an item""")
 
         while True:
-            choice = Prompt.ask("[blue]Choice[/blue]")
+            choice = self.prompt("[blue]Choice[/blue]")
             if choice == "1":
-                choice_2 = Prompt.ask("""
+                choice_2 = self.prompt("""
 [yellow]
     Ok, you were headed north towards the ruins. The current time is 2:48.
     Using the suns position should get you back on track. Using your shadow 
@@ -210,7 +209,7 @@ class Desert:
 """)
                     break
                 else:
-                    choice = Prompt.ask("""[yellow]
+                    choice = self.prompt("""[yellow]
     Please type either east or west.
 """)
             elif choice == "2":
@@ -256,9 +255,7 @@ class Desert:
                 self.health, self.stamina = item_selection(self.inventory, self.health, self.stamina)
                 continue
             else:
-                self.print("""[yellow]
-    Please type 1, 2, or 3
-""")
+                continue
 
 
 if __name__ == '__main__':

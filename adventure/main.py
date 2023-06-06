@@ -15,22 +15,23 @@ from ending import final
 from game import *
 
 
-
-
 def main():
     # Anthony's testing code' start
     game = introduction()
     # game = GameLogic('survival knife')
     jungle = Jungle(console.print, Prompt.ask)
-    desert = Desert(console.print, Prompt.ask)
-    river = River()
-    ruins_ent = RuinsEntrance(console.print, Prompt.ask)
-    ruins_hall = Ruins_Halls()
-    ruins_fr = RuinsFinalRoom()
-    envs = [jungle, river, desert, ruins_ent, ruins_hall, ruins_fr]
+    # desert = Desert(console.print, Prompt.ask)
+    # river = River()
+    # ruins_ent = RuinsEntrance(console.print, Prompt.ask)
+    # ruins_hall = Ruins_Halls()
+    # ruins_fr = RuinsFinalRoom()
+    # envs = [jungle, river, desert, ruins_ent, ruins_hall, ruins_fr]
 
     # jungle = Jungle()
+    jungle.event_one()
     # jungle.event_two()
+    # jungle.event_three()
+    # jungle.event_four()
     # river = River()
     # river.event_one()
     # river.event_two()

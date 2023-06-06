@@ -21,8 +21,8 @@ def main():
     # Anthony's testing code' start
     game = introduction()
     # game = GameLogic('survival knife')
-    jungle = Jungle(console.print, Prompt.ask)
-    # desert = Desert(console.print, Prompt.ask)
+    # jungle = Jungle(console.print, Prompt.ask)
+    desert = Desert(console.print, Prompt.ask)
     # river = River()
     # ruins_ent = RuinsEntrance(console.print, Prompt.ask)
     # ruins_hall = Ruins_Halls()
@@ -30,7 +30,7 @@ def main():
     # envs = [jungle, river, desert, ruins_ent, ruins_hall, ruins_fr]
 
     # jungle = Jungle()
-    jungle.event_one()
+    # jungle.event_one()
     # jungle.event_two()
     # jungle.event_three()
     # jungle.event_four()
@@ -40,7 +40,7 @@ def main():
     # river.event_three()
     # desert = Desert()
     # desert.event_one()
-    # desert.event_two()
+    desert.event_two()
     # desert. event_three()
     # ruins_ent = RuinsEntrance()
     # ruins_ent.event_one()

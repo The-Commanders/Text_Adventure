@@ -1,13 +1,16 @@
 import random
 from rich.console import Console
 from rich.style import Style
+from consumables import *
 
 console = Console()
 
 
+
+
 class RuinsFinalRoom:
-    def __init__(self, name):
-        self.name = name
+    def __init__(self):
+        self.name = "Ruins Final Room"
         self.health = 10
         self.stamina = 10
         self.inventory = []
@@ -41,12 +44,14 @@ class RuinsFinalRoom:
     you leap off the collapsing ground and swing across the room to stable ground.
     """)
                 self.stamina -= 2
+                break
             elif choice == "2":
                 console.print("""[purple]
     You notice a lower level below, so you quickly attach your grappling hook to a secure structure and 
     start rappelling down using the rope. Carefully descending, you land safely on the lower level.
     """)
                 self.stamina -= 3
+                break
             elif choice == "3":
                 console.print("""[purple]
     You see there are still some stable sections of ground on some sides of the chasm, so you use your 
@@ -55,7 +60,12 @@ class RuinsFinalRoom:
     onto the ground, you tighten the create and create a stable bridge. You carefully walk across.
     """)
                 self.stamina -= 3
-            break
+                break
+            elif choice == "i":
+                self.health, self.stamina = item_selection(self.inventory, self.health, self.stamina)
+                continue
+            else:
+                print("Enter your choice(1, 2, 3): ")
 
         console.print("""[blue]
         Your current stamina is: :meat:""", self.stamina)
@@ -84,6 +94,7 @@ class RuinsFinalRoom:
     guardian lets out a roar of pain and temporarily loses focus, giving you 
     a chance to deal further damage.""")
                 self.health -= 3
+                break
             elif choice == "2":
                 console.print("""[purple]
     You successfully reach a position near the guardian's vulnerable spot without being detected. You 
@@ -92,6 +103,7 @@ class RuinsFinalRoom:
     you must act quickly and retreat to cover before the guardian retaliates. You return to the shadows, 
     evading the guardian's gaze and avoiding its powerful attacks.""")
                 self.health -= 3
+                break
             elif choice == "3":
                 console.print("""[purple]
     You pick a small stone from the ground and hurl it to a corner of the room, away from your intended 
@@ -100,7 +112,12 @@ class RuinsFinalRoom:
     swiftly and silently towards the guardian. With your survival knife you strike a powerful attack to the 
     guardian's weak spot. The guardian lets out a roar of pain and dies.""")
                 self.health -= 1
-            break
+                break
+            elif choice == "i":
+                self.health, self.stamina = item_selection(self.inventory, self.health, self.stamina)
+                continue
+            else:
+                print("Enter your choice(1, 2, 3): ")
 
         console.print("""[blue]
     Your current health is: :heart:""", self.health)
@@ -118,27 +135,25 @@ class RuinsFinalRoom:
         console.print("""[green]2. Play hangman.""")
 
         while True:
-            option1_completed = False
-            option2_completed = False
-
-            while True:
-                selection = input("Enter your choice(1, 2)")
-                if selection == "1":
-                    self.guess_number()
-                elif selection == "2":
-                    self.play_hangman()
-                    break
-
-            if option1_completed and option2_completed:
-                console.print("""[purple]
-    Congratulations! You have successfully obtained the long-lost idol, a priceless artifact hidden within 
-    the depths of the ancient ruins. As you hold it in your hands, a surge of power and accomplishment 
-    courses through your veins. You emerge from the treacherous depths, the idol shining brightly in your 
-    grasp, ready to share the tales of your daring adventure with those who await your triumphant return. 
-    The game concludes, but your legend will live on.
-    """)
+            selection = input("Enter your choice(1, 2)")
+            if selection == "1":
+                self.guess_number()
                 break
+            elif selection == "2":
+                self.play_hangman()
+                break
+            elif selection == "i":
+                self.health, self.stamina = item_selection(self.inventory, self.health, self.stamina)
+                continue
 
+            # if option1_completed and option2_completed:
+            #     print("Congratulations! You have successfully obtained the long-lost idol, a priceless artifact hidden "
+            #           "within the depths of the ancient ruins. As you hold it in your hands, a surge of power and "
+            #           "accomplishment courses through your veins. You emerge from the treacherous depths, the idol "
+            #           "shining brightly in your grasp, ready to share the tales of your daring adventure with those "
+            #           "who await your triumphant return. The game concludes, but your legend will live on.")
+            
+            
     def guess_number(self):
         console.print("""[purple]
     Welcome to Guess the Number!
@@ -305,7 +320,7 @@ class RuinsFinalRoom:
 
 
 if __name__ == "__main__":
-    user_choice = RuinsFinalRoom("Ruins Final Room")
+    user_choice = RuinsFinalRoom()
     user_choice.event_one()
     user_choice.event_two()
     user_choice.event_three()

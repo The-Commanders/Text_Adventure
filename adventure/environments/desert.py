@@ -1,40 +1,43 @@
-from game import *
+# from game import *
 from rich.console import Console
 from rich.prompt import Prompt
 import random
 import time
+from consumables import use_item, item_selection
 
 
 class Desert:
-    def __init__(self, name):
-        self.name = name
+    def __init__(self, print, prompt):
+        self.name = "Desert"
         self.health = 10
         self.stamina = 10
         self.inventory = []
+        self.print = print
+        self.prompt = prompt
+
 
     def event_one(self):
-        console = Console()
-        console.print("""
+        self.print("""
     [bold yellow]You arrive at the desert, the brutal heat hits you as you feel sweat run down your face.""")
-        console.print("""
+        self.print("""
 
     [yellow]As you walk through the desert for what seems like hours, you see something in the distance.
     Stopping for a moment, you see its an oasis! Palm trees as far as the eye can see, beautiful
     blue shimmering water, and coconuts filled with delicious juice.""")
 
-        choice = Prompt.ask("""
+        self.print("""
         [yellow]What will you do?
     1. Refile your stamina at the Oasis
     2. Ignore it and save your energy for more walking, your here for the treasure
     3. Eat a ration ([i #9D00FF]consumes ration[/i #9D00FF])
-    Choose 1, 2, or 3
-    Choice""")
+     Choose 1, 2, or 3 or enter "i" to use an item""")
 
-        while choice:
+        while True:
+            choice = Prompt.ask("[blue]Choice[/blue]")
             if choice == "1":
                 rand_stam_loss = random.randint(3, 5)
                 self.stamina -= rand_stam_loss
-                console.print(f"""
+                self.print(f"""
     [bold red]Not good, you fell for a mirage![/bold red]
     [yellow]Exhausted, you walk back to the path you were taking.
     This took {rand_stam_loss} stamina.
@@ -43,7 +46,7 @@ class Desert:
             elif choice == "2":
                 rand_stam_loss = random.randint(1, 2)
                 self.stamina -= rand_stam_loss
-                console.print(f"""[yellow]
+                self.print(f"""[yellow]
     You continue on, not sure whether to trust your vision or not.
     The heat is is starting to get to you, but you cant give up now!
     This took {rand_stam_loss} stamina.
@@ -55,7 +58,7 @@ class Desert:
                     self.inventory.remove("ration")
                     rand_stam_gain = random.randint(1, 5)
                     self.stamina += rand_stam_gain
-                    console.print(f"""[yellow]
+                    self.print(f"""[yellow]
     You consumed a [i #9D00FF]ration[/i #9D00FF], and feel better than ever!
     You continue on through the desert with extra stamina!
     You gained {rand_stam_gain} stamina!
@@ -66,31 +69,32 @@ class Desert:
 [yellow]
     You do not have a [i #9D00FF]ration[/i #9D00FF] in your inventory. Please type 1 or 2.
 """)
-
+            elif choice == "i":
+                self.health, self.stamina = item_selection(self.inventory, self.health, self.stamina)
+                continue
             else:
-                choice = Prompt.ask("Please type 1, 2, or 3")
+                self.print("[yellow]Please type 1, 2, or 3[/yellow]")
 
     def event_two(self):
-        console = Console()
-        console.print("""[yellow]
+        self.print("""[yellow]
     You arrive at the desert, the brutal heat hits you as you feel sweat run down your face.""")
-        console.print("""
+        self.print("""
 [yellow]
     Wandering in the heat has taken a toll on you, and its hard to focus. Suddenly you find yourself
     in a pit of quicksand! You are rapidly sinking with each second, and time is running out!
     Think quick, what will you do?""")
 
-        choice = Prompt.ask("""
+        self.print("""
         [yellow]What will you do?
     1. Dig out slowly, the more you panic the worse it will be
     2. Dig yourself out with brute force
     3. Grapple out of the sand ([i #9D00FF]requires grappling hook[/i #9D00FF])
-    Choose 1, 2, or 3
-Choice""")
+    Choose 1, 2, or 3 or enter "i" to use an item""")
 
-        while choice:
+        while True:
+            choice = self.prompt("[blue]Choice[/blue]")
             if choice == "1":
-                console.print("""
+                self.print("""
                     [yellow]You chose the safe route. As you inch out, the sand starts sinking again!
                     You must act fast! Type the words you see on the screen to dig out![/yellow]
                     [red]Warning: 10 seconds will -2 points of health[/red]
@@ -105,7 +109,7 @@ Choice""")
                     if qte == qte_strs[qte_index]:
                         qte_index += 1
                     else:
-                        console.print("""
+                        self.print("""
             [b red]Wrong input![/b red]""")
 
                     elapsed_time = time.time() - start_time
@@ -113,7 +117,7 @@ Choice""")
                         self.health -= 2
                         start_time + time.time()  # Reset the start time
 
-                console.print(f"""
+                self.print(f"""
     [bold yellow]
     Your quick thinking got you out of the quicksand!
     It took you {round(elapsed_time)} seconds to get out,
@@ -125,7 +129,7 @@ Choice""")
             elif choice == "2":
                 rand_health_loss = random.randint(2, 4)
                 self.health -= rand_health_loss
-                console.print(f"""
+                self.print(f"""
     [red]Looks like the heat has clouded your judgment as well[/red]
     [yellow]Brute force made the sand envelop you much quicker, resulting in
     you almost suffocating in the process! Better be more careful.
@@ -136,7 +140,7 @@ Choice""")
             elif choice == "3":
 
                 if "grappling hook" in self.inventory:
-                    console.print("""
+                    self.print("""
 [bold yellow]
     Great thinking! Using the grappling hook, you through it over the gap
     hitting a rock and latching on! This saves you from struggling.
@@ -150,31 +154,33 @@ Choice""")
     You dont have the [i #9D00FF]grappling hook[/i #9D00FF] in your inventory!
     please type 1 or 2.
 """)
+            elif choice == "i":
+                self.health, self.stamina = item_selection(self.inventory, self.health, self.stamina)
+                continue
             else:
-                choice = Prompt.ask("""[yellow]
+                self.print("""[yellow]
     Please type 1, 2, or 3
 """)
 
     def event_three(self):
-        console = Console()
-        console.print("""[yellow]
+        self.print("""[yellow]
     You arrive at the desert, the brutal heat hits you as you feel sweat run down your face.""")
-        console.print("""
+        self.print("""
 [yellow]
     The desert sky is blue and clear, not a cloud in sight. After taking a second
     to admire the atmosphere and setting, you realise you've completely lost your
     sense of direction! You start to panic but collect your thoughts. What can
     help you remember where you've been? Take a second to collect your thoughts""")
 
-        choice = Prompt.ask("""
+        self.print("""
         [yellow]What will you do?
     1. Use the sky for direction
     2. Book it in one direction
     3. Try to remember your surroundings
-    Choose 1, 2, or 3
-Choice""")
+    Choose 1, 2, or 3 or enter "i" to use an item""")
 
-        while choice:
+        while True:
+            choice = Prompt.ask("[blue]Choice[/blue]")
             if choice == "1":
                 choice_2 = Prompt.ask("""
 [yellow]
@@ -186,7 +192,7 @@ Choice""")
                 if choice_2 == "east":
                     rand_stam_loss = random.randint(2, 3)
                     self.stamina -= rand_stam_loss
-                    console.print(f"""
+                    self.print(f"""
 [yellow]
     [red]Incorrect:[/red]
     The sun sets in the west
@@ -195,7 +201,7 @@ Choice""")
 """)
                     break
                 elif choice_2 == "west":
-                    console.print(f"""
+                    self.print(f"""
 [yellow]
     [green]Correct:[/green]
     The sun sets in the west
@@ -210,7 +216,7 @@ Choice""")
             elif choice == "2":
                 rand_stam_loss = random.randint(2, 5)
                 self.stamina -= rand_stam_loss
-                console.print(f"""
+                self.print(f"""
 [yellow]
     For some reason you decide to run around like a mad man, getting you
     no where, and now your even more lost! Looks like going on in one direction
@@ -220,7 +226,7 @@ Choice""")
                 break
 
             elif choice == "3":
-                console.print("""
+                self.print("""
 [yellow]
     You remember seeing a few objects that can help you remember your direction.
     Unscramble the words to remember the objects you have seen to find the right
@@ -230,24 +236,35 @@ Choice""")
                 qte_strs = ["palm tree", "rock", "pyramid", "scorpion"]
                 qte_index = 0
                 while qte_index < len(qte_strs):
-                    qte = Prompt.ask(f"""
+                    qte = self.prompt(f"""
                             [b red]unscramble[/b red]""")
                     if qte == qte_strs[qte_index]:
                         qte_index += 1
-                        console.print("""[green]
+                        self.print("""[green]
                             Correct""")
                     else:
-                        console.print("""
+                        self.print("""
                             [b red]Wrong input![/b red]""")
-                console.print(f"""
+                self.print(f"""
 [bold yellow]
     Great work! You remembered the objects!
     As you continue walking, You see the palm tree you passed in the distance,
     you must be going the right way! You continue your journey
     """)
                 break
+            elif choice == "i":
+                self.health, self.stamina = item_selection(self.inventory, self.health, self.stamina)
+                continue
             else:
-                choice = Prompt.ask("""[yellow]
+                self.print("""[yellow]
     Please type 1, 2, or 3
 """)
 
+
+if __name__ == '__main__':
+    from rich.console import Console
+    from rich.prompt import Prompt
+
+    console = Console()
+    env = Desert(console.print, Prompt.ask)
+    env.event_one()

@@ -1,4 +1,4 @@
-from game import *
+from adventure.game import *
 from rich.console import Console
 import random
 from rich.prompt import Prompt

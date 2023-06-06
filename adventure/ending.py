@@ -1,7 +1,7 @@
 from rich.console import Console
 from rich.prompt import Prompt
 import random
-from intro import random_color
+from adventure.intro import random_color
 
 
 def final(health, stamina):

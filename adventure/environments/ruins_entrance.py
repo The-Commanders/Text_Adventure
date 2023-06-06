@@ -1,6 +1,6 @@
 import random
 from rich.console import Console
-from consumables import *
+from adventure.consumables import *
 
 console = Console()
 

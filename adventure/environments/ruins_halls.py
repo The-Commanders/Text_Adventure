@@ -1,5 +1,6 @@
 import random
-# from consumables import *
+from colorama import Fore, Style
+from adventure.consumables import *
 
 
 class Ruins_Halls:

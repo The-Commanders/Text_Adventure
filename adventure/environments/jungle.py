@@ -60,7 +60,7 @@ class Jungle:
     """)
                 # added in to satisfy use item logic
             elif selection == "i":
-                self.health, self.stamina = item_selection(self.inventory, self.health, self.stamina)
+                self.health, self.stamina = item_selection(self.inventory, self.health, self.stamina, self.print, self.prompt)
                 continue
             else:
                 self.print("""[green]
@@ -102,19 +102,22 @@ class Jungle:
     """)
                 break
             elif selection == "3":
-                self.stamina -= 2
-                self.print(f"""[green]
+                if "rope" in self.inventory:
+                    self.stamina -= 2
+                    self.print(f"""[green]
     With rope in hand, you toss it over a sturdy tree branch and safely swing across. -[yellow]2 stamina[/yellow]
     """)
-                break
+                    break
+                else:
+                    self.print(f"You do not have any rope!")
             elif selection == "i":
                 self.health, self.stamina = item_selection(self.inventory, self.health, self.stamina)
                 continue
             else:
                 self.print("[green]Please pick 1, 2, or 3 or 'i'.")
-        self.print(f"[green]Health: {self.health}[/green]\n"
-              f"[yellow]Stamina: {self.stamina}[/yellow]\n"
-              f"[white]Inventory: {', '.join(self.inventory)}[/white]")
+        # self.print(f"[green]Health: {self.health}[/green]\n"
+        #       f"[yellow]Stamina: {self.stamina}[/yellow]\n"
+        #       f"[white]Inventory: {', '.join(self.inventory)}[/white]")
 
     def event_three(self):
         self.print("""[green]

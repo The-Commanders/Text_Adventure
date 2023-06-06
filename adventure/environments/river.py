@@ -1,5 +1,7 @@
 import random
-# from consumables import *
+from colorama import Fore, Style
+from adventure.consumables import *
+
 
 
 class River:
@@ -11,6 +13,17 @@ class River:
         self.items = []
         self.print = print
         self.prompt = prompt
+
+#     def display_text(self, text, color=None):
+#         if color:
+#             print(color + text + Fore.RESET)
+#         else:
+#             print(text)
+
+#     def item_collection(self):
+#         self.display_text("Items in the game:", Fore.CYAN)
+#         for item in self.items:
+#             self.display_text("- " + item, Fore.CYAN)
 
     def event_one(self):
         self.print("""[cyan]

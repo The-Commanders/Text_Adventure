@@ -3,16 +3,18 @@ from rich.console import Console
 from rich.prompt import Prompt
 from rich.style import Style
 # environments
-from intro import introduction
-from environments.jungle import Jungle
-from environments.river import River
-from environments.desert import Desert
-from environments.ruins_entrance import RuinsEntrance
-from environments.ruins_halls import Ruins_Halls
-from environments.ruins_final_room import RuinsFinalRoom
-from ending import final
+from adventure.intro import introduction
+from adventure.environments.jungle import Jungle
+from adventure.environments.river import River
+from adventure.environments.desert import Desert
+from adventure.environments.ruins_entrance import RuinsEntrance
+from adventure.environments.ruins_halls import Ruins_Halls
+from adventure.environments.ruins_final_room import RuinsFinalRoom
+from adventure.ending import final
 # game logic
-from game import *
+from adventure.game import GameLogic
+
+console = Console()
 
 
 def main():
@@ -38,7 +40,7 @@ def main():
     # river.event_three()
     # desert = Desert()
     # desert.event_one()
-    # desert.event_two()
+#     desert.event_two()
     # desert. event_three()
     # ruins_ent = RuinsEntrance()
     # ruins_ent.event_one()
@@ -49,13 +51,6 @@ def main():
 #     ruins_hall.event_two()
 #     ruins_hall.event_three()
 
-
-    # ruins_fr = RuinsFinalRoom()
-    # ruins_fr.event_one()
-    # ruins_fr.event_two()
-    # ruins_fr.event_three()
-    envs = [jungle, river, desert, ruins_ent, ruins_hall, ruins_fr]
-
     # Anthony's testing code start
     # game = GameLogic('survival knife')
 
@@ -65,12 +60,12 @@ def main():
     # game.add_environment(ruins_ent)
     # game.add_environment(ruins_hall)
     # game.add_environment(ruins_fr)
-
-    for env in envs:
-        game.add_environment(env)
-
-    game.traverse_environments()
-    final(game.health, game.stamina)
+    #
+    # for env in envs:
+    #     game.add_environment(env)
+    #
+    # game.traverse_environments()
+    # final(game.health, game.stamina)
     
     # game.game_over()
     # game.trigger_random_event(jungle)

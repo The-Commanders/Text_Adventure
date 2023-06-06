@@ -1,9 +1,11 @@
 import random
 from rich.console import Console
 from rich.prompt import Prompt
-# from ..consumables import use_item, item_selection
+from rich.style import Style
+from adventure.consumables import *
 
-self = Console()
+console = Console()
+
 
 
 class RuinsFinalRoom:

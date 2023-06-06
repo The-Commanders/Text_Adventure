@@ -85,7 +85,7 @@ class RuinsFinalRoom:
             choice = input("""
     Enter your choice(1, 2, 3): 
     """)
-            
+
             if choice == "1":
                 console.print("""[purple]
     You successfully set up the rope trap and, as expected, the guardian starts to move forward. The 

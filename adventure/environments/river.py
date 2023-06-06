@@ -1,236 +1,290 @@
 import random
-from colorama import Fore, Style
-from consumables import *
+# from consumables import *
 
 
 class River:
-    def __init__(self):
+    def __init__(self, print, prompt):
         self.name = "River"
         self.health = 10
         self.stamina = 10
         self.inventory = []
-        self.items = ["First aid spray", "Ration"]
-
-
-    def display_text(self, text, color=None):
-        if color:
-            print(color + text + Fore.RESET)
-        else:
-            print(text)
-
-    def item_collection(self):
-        self.display_text("Items in the game:", Fore.CYAN)
-        for item in self.items:
-            self.display_text("- " + item, Fore.CYAN)
+        self.items = []
+        self.print = print
+        self.prompt = prompt
 
     def event_one(self):
-        self.display_text("You come across a wide river. How do you proceed?", Fore.CYAN)
-        self.display_text("1. Swim across the river.", Fore.CYAN)
-        self.display_text("2. Build a makeshift raft and sail across.", Fore.CYAN)
-        self.display_text("3. Look for a bridge upstream.", Fore.CYAN)
+        self.print("""[cyan]
+    You've come across the river, peaceful and calm, but anything could be 
+    hiding inside the waters, stay on your toes!
+    """)
+        self.print("""[cyan]
+    The base of the river seems to have no simple way across, just your luck!
+    How will you get across, looks like there are a few ways..
+    1. Swim across the river
+    2. Build a makeshift raft and sail across
+    3. Look for a bridge upstream.
+    """)
 
         while True:
-            # try:
-                # if choice < 1 or choice > 3 or choice != 'i':
-            #         raise ValueError
-            #     break
-            # except ValueError:
-            #     self.display_text("Invalid choice. Please enter a number between 1 and 3.", Fore.RED)
-            choice = input("Enter your choice (1-3), enter 'i' to use an item: ")
+            choice = self.prompt("""[cyan]
+    Enter your choice (1-3), enter 'i' to use an item: 
+    """)
             if choice == "1":
                 self.stamina -= random.randint(1, 3)
-                self.display_text("You swim across the river. It was tiring, and you lost some stamina.", Fore.YELLOW)
+                self.print("""[cyan]
+    You swim across the river. It was tiring, and you lost some stamina.
+    """)
                 break
             elif choice == "2":
                 self.inventory.append("Raft")
-                self.display_text("You build a makeshift raft and sail across the river. You now have a raft in your inventory.", Fore.GREEN)
+                self.print("""[cyan]
+    You build a makeshift raft and sail across the river. You now have a raft in your inventory.
+    """)
                 break
             elif choice == "3":
                 self.stamina -= random.randint(1, 2)
-                self.display_text("You find a bridge upstream and cross the river safely, but it tires you out a bit.", Fore.YELLOW)
+                self.print("""[cyan]
+    You find a bridge upstream and cross the river [green]safely[/green], but it tires you out a bit.
+    """)
                 break
             elif choice == "i":
                 self.health, self.stamina = item_selection(self.inventory, self.health, self.stamina)
                 continue
             else:
-                self.display_text("Invalid choice. Please enter a number between 1 and 3.", Fore.RED)
+                self.print("""[cyan]
+    [red]Invalid[/red] choice. Please enter a number between 1 and 3.
+    """)
 
-        self.display_text("Your current health: " + str(self.health), Fore.CYAN)
-        self.display_text("Your current stamina: " + str(self.stamina), Fore.CYAN)
-        self.display_text("Your inventory: " + str(self.inventory), Fore.CYAN)
+        self.print("[white]Your current health: " + str(self.health))
+        self.print("[white]Your current stamina: " + str(self.stamina))
+        self.print("[white]Your inventory: " + str(self.inventory))
 
         if self.stamina <= 0:
             self.health -= random.randint(2, 4)
-            self.display_text("The swim drained your stamina, and you lost some health.", Fore.RED)
+            self.print("""[cyan]
+    The swim drained your [yellow]stamina[/yellow], and you lost some [red]health[/red].
+    """)
         elif self.stamina >= 10:
             self.health += random.randint(1, 3)
-            self.display_text("You handled the swim well and gained some health.", Fore.GREEN)
+            self.print("""[cyan]
+    You handled the swim well and gained some [red]health[/red].
+    """)
 
     def event_two(self):
-        self.display_text("You encounter a dangerous creature. What do you do?", Fore.CYAN)
-        self.display_text("1. Fight the creature.", Fore.CYAN)
-        self.display_text("2. Try to evade the danger.", Fore.CYAN)
-        self.display_text("3. Stand your ground.", Fore.CYAN)
+        self.print("""[cyan]
+    You've come across the river, peaceful and calm, but anything could be 
+    hiding inside the waters, stay on your toes!
+    """)
+        self.print("""[cyan]
+    As you traverse the riverside looking for a way across, you encounter a dangerous
+    crocodile, and he looks hungry!
+        What do you do?
+    1. Fight the creature.
+    2. Try to evade the danger.
+    3. Stand your ground.
+    """)
 
         while True:
-            # try:
-        #     if choice < 1 or choice > 3:
-        #         raise ValueError
-        #     break
-        # except ValueError:
-        #     self.display_text("Invalid choice. Please enter a number between 1 and 3.", Fore.RED)
 
-            choice = input("Enter your choice (1-3), enter 'i' to use an item: ")
+            choice = self.prompt("""[cyan]
+    Enter your choice (1-3), enter 'i' to use an item
+    Input""")
             if choice == "1":
                 self.stamina -= random.randint(2, 4)
-                self.display_text("You engage in a fierce battle. The creature hits you, and you lose some stamina.",
-                                  Fore.RED)
+                self.print("""[cyan]
+    You engage in a fierce battle. The creature hits you, and you lose some [yellow]stamina[/yellow].
+    """)
                 break
             elif choice == "2":
                 self.stamina -= random.randint(1, 3)
-                self.display_text("You manage to evade the danger, but it tires you out.", Fore.YELLOW)
+                self.print("""[cyan]
+    You manage to evade the danger, but it tires you out.
+    """)
                 break
             elif choice == "3":
                 self.stamina -= random.randint(1, 2)
-                self.display_text("You stand your ground and face the creature. It takes a toll on your stamina.",
-                                  Fore.YELLOW)
+                self.print("""[cyan]
+    You stand your ground and face the creature. It takes a toll on your [yellow]stamina[/yellow].
+    """)
                 break
             elif choice == "i":
                 self.health, self.stamina = item_selection(self.inventory, self.health, self.stamina)
                 continue
             else:
-                self.display_text("Invalid choice. Please enter a number between 1 and 3.", Fore.RED)
+                self.print("""[cyan]
+    [red]Invalid[/red] choice. Please enter a number between 1 and 3.
+    """)
 
-        self.display_text("Your current health: " + str(self.health), Fore.CYAN)
-        self.display_text("Your current stamina: " + str(self.stamina), Fore.CYAN)
-        self.display_text("Your inventory: " + str(self.inventory), Fore.CYAN)
+        self.print("[white]Your current health: " + str(self.health))
+        self.print("[white]Your current stamina: " + str(self.stamina))
+        self.print("[white]Your inventory: " + str(self.inventory))
 
         if self.stamina <= 0:
             self.health -= random.randint(2, 4)
-            self.display_text("The fight drained your stamina, and you lost some health.", Fore.RED)
+            self.print("""[cyan]
+    The fight drained your [yellow]stamina[/yellow], and you lost some [red]health[/red].
+    """)
         elif self.stamina >= 10:
             self.health += random.randint(1, 3)
-            self.display_text("You handled the situation well and gained some health.", Fore.GREEN)
+            self.print("""[cyan]
+    You handled the situation well and gained some [red]health[/red].
+    """)
 
     def event_three(self):
-        self.display_text("You come across a mysterious puzzle. What do you do?", Fore.CYAN)
-        self.display_text("1. Solve a riddle.", Fore.CYAN)
-        self.display_text("2. Complete a typing challenge.", Fore.CYAN)
-        self.display_text("3. Guess the correct word.", Fore.CYAN)
+        self.print("""[cyan]
+    You've come across the river, peaceful and calm, but anything could be 
+    hiding inside the waters, stay on your toes!
+    """)
+        self.print("""[cyan]
+    The riverside is full of surprises, you come across a suspicious wall, with some prompts
+    written on the walls. 'Choose one', reads the wall. Reluctantly, you decide to..
+    1. Solve a riddle
+    2. Complete a typing challenge
+    3. Guess the correct word
+    """)
 
         while True:
-            # try:
-            #     if choice < 1 or choice > 3:
-            #         raise ValueError
-            #     break
-            # except ValueError:
-            #     self.display_text("Invalid choice. Please enter a number between 1 and 3.", Fore.RED)
 
-            choice = input("Enter your choice (1-3), enter 'i' to use an item: ")
+            choice = self.prompt("""[cyan]
+    Enter your choice (1-3), enter 'i' to use an item:
+    """)
             if choice == "1":
-                riddle = "I speak without a mouth and hear without ears. I have no body, but I come alive with wind. What am I?"
+                riddle = """[cyan]
+    I speak without a mouth and hear without ears. I have no body, 
+    but I come alive with wind. What am I?
+    """
                 answer = "echo"
-                self.display_text("Riddle:", Fore.YELLOW)
-                self.display_text(riddle, Fore.YELLOW)
-                player_answer = input("Enter your answer: ").lower()
+                self.print("    [cyan]Riddle:")
+                self.print(riddle)
+                player_answer = self.prompt("   [cyan]Enter your answer: ").lower()
                 if player_answer == answer:
                     self.health = min(self.health + random.randint(1, 3), 10)  # Ensure health doesn't exceed 10
-                    self.display_text("Congratulations! You solved the riddle and gained some health.", Fore.GREEN)
+                    self.print("""[cyan]
+    [green]Congratulations[/green]! You solved the riddle and gained some health.
+    """)
                     break
                 else:
                     self.health = max(self.health - random.randint(2, 4), 0)  # Ensure health doesn't go below 0
-                    self.display_text("Oops! Your answer is incorrect, and it has taken a toll on your health.", Fore.RED)
+                    self.print("""
+    Oops! Your answer is [red]incorrect[/red], and it has taken a toll on your health.
+    """)
                     break
             elif choice == "2":
                 challenge_word = "challenge"
-                player_word = input("Type the word 'challenge' as fast as you can: ").lower()
+                player_word = self.prompt("""[cyan]
+    Type the word '[#9D00FF]challenge[/#9D00FF]' as fast as you can: 
+    challenge""").lower()
                 if player_word == challenge_word:
                     self.stamina -= random.randint(1, 3)
-                    self.display_text("Well done! You completed the typing challenge and gained some stamina.", Fore.GREEN)
+                    self.print("""
+    Well done! You completed the typing challenge and gained some 
+    [yellow]stamina[/yellow].
+    """)
                     break
                 else:
                     self.stamina -= random.randint(2, 4)
-                    self.display_text("Oops! Your answer is incorrect, and it has taken a toll on your stamina.", Fore.RED)
+                    self.print("""[cyan]
+    Oops! Your answer is [red]incorrect[/red], and it has taken 
+    a toll on your [yellow]stamina[/yellow].
+    """)
                     break
             elif choice == "3":
                 word_to_guess = "secret"
                 attempts = 3
                 while attempts > 0:
-                    player_guess = input("Guess the correct word: It starts with a 'S' and ends with a 't': ").lower()
+                    player_guess = self.prompt("""[cyan]
+    Guess the correct word: It starts with a '[green]S[/green]' and ends with a '[green]t[/green]': 
+    Input""").lower()
                     if player_guess == word_to_guess:
                         self.inventory.append(random.choice(self.items))
-                        self.display_text("Congratulations! You guessed the correct word", Fore.GREEN)
+                        self.print("""[cyan]
+    [green]Congratulations[/green]! You guessed the correct word
+    """)
                         break
                     elif player_guess != word_to_guess:
                         attempts -= 1
                         self.stamina -= random.randint(1, 2)
-                        self.display_text("Incorrect guess. Try again!", Fore.RED)
+                        self.print("""[white]
+    [red]Incorrect[/red] guess. Try again!
+    """)
                         if attempts > 0:
-                            self.display_text(f"You have {attempts} attempts left.", Fore.RED)
+                            self.print(f"""[white]
+    You have {attempts} attempts left.
+    """)
                 if attempts == 0:
-                    self.display_text("You failed to guess the word. No treasure for you!", Fore.RED)
+                    self.print("""
+    You [red]failed[/red] to guess the word. No treasure for you!
+    """)
                     break
             elif choice == "i":
                 self.health, self.stamina = item_selection(self.inventory, self.health, self.stamina)
                 continue
             else:
-                self.display_text("Invalid choice. Please enter a number between 1 and 3.", Fore.RED)
+                self.print("""
+    [red]Invalid[/red] choice. Please enter a number between 1 and 3.
+    """)
 
-        self.display_text("Your current stamina: " + str(self.stamina), Fore.CYAN)
-        self.display_text("Your current health: " + str(self.health), Fore.CYAN)
-        self.display_text("Your inventory: " + str(self.inventory), Fore.CYAN)
+        self.print("[white]Your current stamina: " + str(self.stamina))
+        self.print("[white]Your current health: " + str(self.health))
+        self.print("[white]Your inventory: " + str(self.inventory))
 
 
     # def prompt_continue(self):
     #     while True:
-    #         choice = input("Type 'next' for the next challenge or 'q' to exit: ")
+    #         choice = self.prompt("Type 'next' for the next challenge or 'q' to exit: ")
     #         if choice == 'next':
     #             break
     #         elif choice == 'q':
     #             exit()
     #         else:
-    #             self.display_text("Invalid choice. Please enter 'next' or 'q'.", Fore.RED)
+    #             self.print("Invalid choice. Please enter 'next' or 'q'.", Fore.RED)
 
     # def play_game(self):
     #     self.item_collection()
     #
-    #     self.display_text("Welcome to the River Challenge!", Fore.MAGENTA)
+    #     self.print("Welcome to the River Challenge!", Fore.MAGENTA)
     #
     #     challenge_message = "You have embarked on the River Challenge! 🌊"
     #     message_length = len(challenge_message)
     #     border = "=" * (message_length + 4)
     #
-    #     self.display_text(border, Fore.YELLOW)
-    #     self.display_text(f"| {' ' * message_length} |", Fore.YELLOW)
-    #     self.display_text(f"| {challenge_message} |", Fore.YELLOW)
-    #     self.display_text(f"| {' ' * message_length} |", Fore.YELLOW)
-    #     self.display_text(border, Fore.YELLOW)
+    #     self.print(border, Fore.YELLOW)
+    #     self.print(f"| {' ' * message_length} |", Fore.YELLOW)
+    #     self.print(f"| {challenge_message} |", Fore.YELLOW)
+    #     self.print(f"| {' ' * message_length} |", Fore.YELLOW)
+    #     self.print(border, Fore.YELLOW)
     #
     #     events = [self.situation_event_one, self.danger_event_one, self.puzzle_event_one]
     #     random.shuffle(events)
     #
     #     for event in events[:1]:  # Play only one event
     #         event()
-    #         self.display_text("\n")
+    #         self.print("\n")
     #
     #         if self.health <= 0 or self.stamina <= 0:
-    #             self.display_text("Game Over! Your health or stamina has reached 0. You failed your quest.", Fore.RED)
+    #             self.print("Game Over! Your health or stamina has reached 0. You failed your quest.", Fore.RED)
     #             return
     #
-    #     self.display_text("Your current health: " + str(self.health), Fore.CYAN)
-    #     self.display_text("Your current stamina: " + str(self.stamina), Fore.CYAN)
-    #     self.display_text("Your inventory: " + str(self.inventory), Fore.CYAN)
-    #     self.display_text("")  # Empty line for spacing
-    #     self.display_text("You have completed the River scenario. Well done, adventurer!", Fore.GREEN)
+    #     self.print("Your current health: " + str(self.health), Fore.CYAN)
+    #     self.print("Your current stamina: " + str(self.stamina), Fore.CYAN)
+    #     self.print("Your inventory: " + str(self.inventory), Fore.CYAN)
+    #     self.print("")  # Empty line for spacing
+    #     self.print("You have completed the River scenario. Well done, adventurer!", Fore.GREEN)
     #
     #     self.prompt_continue()
 
 
 if __name__ == "__main__":
-    river = River()
-    river.situation_event_one()
-    river.play_game()
-    print("\n" + "=" * 50 + "\n")
-    river.danger_event_one()
-    print("\n" + "=" * 50 + "\n")
-    river.puzzle_event_one()
+    # river = River()
+    # river.situation_event_one()
+    # river.play_game()
+    # print("\n" + "=" * 50 + "\n")
+    # river.danger_event_one()
+    # print("\n" + "=" * 50 + "\n")
+    # river.puzzle_event_one()
+    from rich.console import Console
+    from rich.prompt import Prompt
+
+    console = Console()
+    env = River(console.print, Prompt.ask)
+    env.event_one()

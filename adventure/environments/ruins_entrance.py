@@ -7,7 +7,6 @@ console = Console()
 
 class RuinsEntrance:
 
-
     def __init__(self, print, prompt):
         self.name = "River Entrance"
         self.health = 10
@@ -21,6 +20,7 @@ class RuinsEntrance:
         self.print("""[#FFA500]
     Congratulations, you've made it to the ruins. You are one step closer to getting the idol. However, in 
     order to get your hands on it you will have to test your strength and wit a few more times.
+    
     It seems like the door to get into the ruins is closed and you don't have the key. How would you like
     to proceed in order to gain access to the ruins?
     1. Climb the wall using your grappling hook.
@@ -58,7 +58,11 @@ class RuinsEntrance:
 
     def event_two(self):
         self.print("""[#FFA500]
-    As you jump into the ruins, you find yourself surrounded by scorpions. What do you do?
+    Congratulations, you've made it to the ruins. You are one step closer to getting the idol. However, in 
+    order to get your hands on it you will have to test your strength and wit a few more times.
+    
+    As you jump into the ruins, you find yourself surrounded by scorpions. 
+        What do you do?
     "1. Try to kill them with your survival knife.
     "2. Run as fast as you can into the ruins so they don't catch you.
     "3. Climb the wall back out.""")
@@ -91,10 +95,11 @@ class RuinsEntrance:
             else:
                 continue
 
-        # print("Your current health is: :heart:", self.health)
-
     def event_three(self):
-        print("""[#FFA500]
+        self.print("""[#FFA500]
+    Congratulations, you've made it to the ruins. You are one step closer to getting the idol. However, in 
+    order to get your hands on it you will have to test your strength and wit a few more times.
+    
     We now know you posses great strength and speed. But what about your wit?
     Complete one of the following challenges to get to the next level.
     1. Solve the riddle
@@ -106,12 +111,12 @@ class RuinsEntrance:
     Enter your choice(1, 2, 3), enter 'i' to use an item:  
     """)
             if choice == "1":
-                self.print("I’m tall when I’m young, and I’m short when I’m old.")
+                self.print("    [#FFA500]I’m tall when I’m young, and I’m short when I’m old.")
                 user_input = self.prompt("""[#FFA500]
     What am I? Enter your answer:
     """)
                 if user_input.lower() == "candle":
-                    self.print("[green]Correct! You've recovered some health and stamina")
+                    self.print("    [green]Correct[/green]! You've recovered some [red]health[/red] and [yellow]stamina[/yellow]")
                     self.inventory.append(random.choice(self.items))
 
                     self.health += 1
@@ -119,7 +124,7 @@ class RuinsEntrance:
                     break
 
                 else:
-                    self.print("[red]Incorrect.")
+                    self.print("    [red]Incorrect.")
             elif choice == "2":
                 self.word_association()
                 break
@@ -127,27 +132,26 @@ class RuinsEntrance:
               
                 while True:
                     self.print("""[#FFA500]
-    Unscramble the word: LGOVNEIRNEMT""")
-                user_input = self.prompt("""[#FFA500]
+    Unscramble the word: LGOVNEIRNEMT
+    """)
+                    user_input = self.prompt("""[#FFA500]
     Enter your answer: 
     """)
-                if user_input.lower() == "government":
-                    print("[green]Correct!")
-                    self.health += 1
-                    self.stamina += 1
-                    break
-                else:
-                    print("[red]Incorrect[/red]. You've recovered some health and stamina")
-                        # continue
-                break
+                    if user_input.lower() == "government":
+                        self.print("    [green]Correct!")
+                        self.health += 1
+                        self.stamina += 1
+                        break
+                    else:
+                        self.print("""[#FFA500]
+    [red]Incorrect[/red]. Looks like your unlucky this time..
+    """)
+                        break
             elif choice == "i":
                 self.health, self.stamina = item_selection(self.inventory, self.health, self.stamina)
                 continue
             else:
                 continue
-
-        console.print(f"Your current health is: {' '.join([':orange_heart:' for _ in range(self.health)])}", self.health)
-        console.print(f"Your current stamina is:{' '.join([':meat_on_bone:' for _ in range(self.stamina)])}", self.stamina)
 
     def word_association(self):
         words = {
@@ -160,19 +164,19 @@ class RuinsEntrance:
         word = random.choice(list(words.keys()))
         associations = words[word]
 
-        print("Think of a word associated with:", word)
-        print("Enter your association:")
+        self.print("Think of a word associated with:", word)
+        self.print("Enter your association:")
 
         while True:
-            association = input("> ")
+            association = self.prompt("> ")
 
             if association in associations:
-                print("Correct association!")
+                self.print("    [green]Correct association!")
                 self.health += 1
                 self.stamina += 1
                 break
             else:
-                print("Incorrect association.")
+                self.print("    [red]Incorrect association.")
 
 
 if __name__ == "__main__":
@@ -184,5 +188,5 @@ if __name__ == "__main__":
     from rich.prompt import Prompt
 
     console = Console()
-    env = RuinsEntrance("ruins_entrance", console.print, Prompt.ask)
+    env = RuinsEntrance(console.print, Prompt.ask)
     env.event_one()

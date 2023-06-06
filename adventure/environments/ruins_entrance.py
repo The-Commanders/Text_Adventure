@@ -111,20 +111,22 @@ class RuinsEntrance:
     Enter your choice(1, 2, 3), enter 'i' to use an item:  
     """)
             if choice == "1":
-                self.print("    [#FFA500]I’m tall when I’m young, and I’m short when I’m old.")
-                user_input = self.prompt("""[#FFA500]
-    What am I? Enter your answer:
-    """)
-                if user_input.lower() == "candle":
-                    self.print("    [green]Correct[/green]! You've recovered some [red]health[/red] and [yellow]stamina[/yellow]")
-                    self.inventory.append(random.choice(self.items))
+                while True:
+                    self.print("    [#FFA500]I’m tall when I’m young, and I’m short when I’m old.")
+                    user_input = self.prompt("""[#FFA500]
+        What am I? Enter your answer:
+        """)
+                    if user_input.lower() == "candle":
+                        self.print("    [green]Correct[/green]! You've recovered some [red]health[/red] and [yellow]stamina[/yellow]")
+                        # self.inventory.append(random.choice(self.items))
 
-                    self.health += 1
-                    self.stamina += 1
-                    break
+                        self.health += 1
+                        self.stamina += 1
+                        break
 
-                else:
-                    self.print("    [red]Incorrect.")
+                    else:
+                        self.print("    [red]Incorrect.")
+                break
             elif choice == "2":
                 self.word_association()
                 break
@@ -146,7 +148,7 @@ class RuinsEntrance:
                         self.print("""[#FFA500]
     [red]Incorrect[/red]. Looks like your unlucky this time..
     """)
-                        break
+                break
             elif choice == "i":
                 self.health, self.stamina = item_selection(self.inventory, self.health, self.stamina)
                 continue

@@ -1,4 +1,4 @@
-# from consumables import use_item, item_selection
+from adventure.consumables import use_item, item_selection
 import random
 
 

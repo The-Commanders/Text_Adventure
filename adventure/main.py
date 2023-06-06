@@ -26,7 +26,7 @@ def main():
     river = River(console.print, Prompt.ask)
     ruins_ent = RuinsEntrance(console.print, Prompt.ask)
     ruins_hall = Ruins_Halls(console.print, Prompt.ask)
-    ruins_fr = RuinsFinalRoom()
+    ruins_fr = RuinsFinalRoom(console.print, Prompt.ask)
     # envs = [jungle, river, desert, ruins_ent, ruins_hall, ruins_fr]
 
     # jungle = Jungle()
@@ -45,7 +45,7 @@ def main():
     # ruins_ent = RuinsEntrance()
     # ruins_ent.event_one()
     # ruins_ent.event_two()
-    # ruins_ent.event_three()
+    ruins_ent.event_three()
 #     ruins_hall = Ruins_Halls()
 #     ruins_hall.event_one()
 #     ruins_hall.event_two()

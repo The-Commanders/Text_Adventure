@@ -3,7 +3,7 @@ from rich.console import Console
 from rich.prompt import Prompt
 import random
 import time
-from consumables import use_item, item_selection
+from adventure.consumables import use_item, item_selection
 
 
 class Desert:

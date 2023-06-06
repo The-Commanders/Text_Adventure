@@ -1,6 +1,7 @@
-from rich.prompt import Prompt
 
-def use_item(item, resource):
+
+
+def use_item(item, resource, print):
 
     maximum = 10
 
@@ -26,20 +27,20 @@ def use_item(item, resource):
             return new_stamina
 
 
-def item_selection(inv, health, stamina):
+def item_selection(inv, health, stamina, print, prompt):
     while True:
         print("Items List:")
         for item in inv:
             print(f"{inv.index(item) + 1}. {item}")
-        item = Prompt.ask("Please select an item you would like to use", default="return", show_default=False)
+        item = prompt("Please select an item you would like to use", default="return", show_default=False)
         if item == "med spray" and item in inv:
             inv.remove(item)
-            hp = use_item(item, health)
+            hp = use_item(item, health, print)
             health = hp
             return health, stamina
         elif item == "ration" and item in inv:
             inv.remove(item)
-            sp = use_item(item, stamina)
+            sp = use_item(item, stamina, print)
             stamina = sp
             return health, stamina
         elif item == "return":

@@ -1,7 +1,7 @@
 import random
 from rich.console import Console
 from rich.style import Style
-from consumables import *
+from adventure.consumables import *
 
 console = Console()
 

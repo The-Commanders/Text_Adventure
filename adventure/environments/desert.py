@@ -15,7 +15,6 @@ class Desert:
         self.print = print
         self.prompt = prompt
 
-
     def event_one(self):
         self.print("""
     [bold yellow]You arrive at the desert, the brutal heat hits you as you feel sweat run down your face.""")

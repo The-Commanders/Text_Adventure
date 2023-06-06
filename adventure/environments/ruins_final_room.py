@@ -1,28 +1,27 @@
 import random
 from rich.console import Console
-from rich.style import Style
-from consumables import *
+from rich.prompt import Prompt
+# from ..consumables import use_item, item_selection
 
-console = Console()
-
-
+self = Console()
 
 
 class RuinsFinalRoom:
-    def __init__(self):
+    def __init__(self, print, prompt):
         self.name = "Ruins Final Room"
         self.health = 10
         self.stamina = 10
         self.inventory = []
-        self.items = ["survival knife", "grappling hook", "rope", "med spray", "ration"]
+        self.print = print
+        self.prompt = prompt
 
     def event_one(self):
-        console.print("""[bold purple]
+        self.print("""[bold purple]
     Congratulations for making it to the final room. You've displayed great strength and wit across 
     all stages of the game but getting your hands on the idol won't be an easy endeavor. Are you ready?
     """)
 
-        console.print("""[purple]
+        self.print("""[purple]
     As you venture into the ruins you see the idol in the middle of the room. It's been carefully placed on the 
     floor right in the center. Something is off. You can feel it in your gut. You start walking very slowly towards the 
     idol, uncertain of what might happen once you get your hands on it. As you start walking towards the center of the 
@@ -30,30 +29,30 @@ class RuinsFinalRoom:
     depths. What do you do?
     """)
 
-        console.print("""[yellow]1. Swing to safety.""")
-        console.print("""[green]2. Descend to a lower level.""")
-        console.print("""[blue]3. Create a bridge.""")
+        self.print("""[yellow]1. Swing to safety.""")
+        self.print("""[green]2. Descend to a lower level.""")
+        self.print("""[blue]3. Create a bridge.""")
 
         while True:
-            choice = input("""
-    Enter your choice(1, 2, 3): 
+            choice = Prompt.ask("""
+    Enter your choice(1, 2, 3) 
     """)
             if choice == "1":
-                console.print("""[purple]
+                self.print("""[purple]
     You throw your grappling hook into a sturdy structure above. The hook catches onto the surface and 
     you leap off the collapsing ground and swing across the room to stable ground.
     """)
                 self.stamina -= 2
                 break
             elif choice == "2":
-                console.print("""[purple]
+                self.print("""[purple]
     You notice a lower level below, so you quickly attach your grappling hook to a secure structure and 
     start rappelling down using the rope. Carefully descending, you land safely on the lower level.
     """)
                 self.stamina -= 3
                 break
             elif choice == "3":
-                console.print("""[purple]
+                self.print("""[purple]
     You see there are still some stable sections of ground on some sides of the chasm, so you use your 
     grappling hook and rope to create a makeshift bridge. You secure the end of the rope to a study 
     structure and throw the grappling hook to stable round on the opposite side. Once your hook catches 
@@ -67,27 +66,27 @@ class RuinsFinalRoom:
             else:
                 print("Enter your choice(1, 2, 3): ")
 
-        console.print("""[blue]
+        self.print("""[blue]
         Your current stamina is: :meat:""", self.stamina)
 
     def event_two(self):
-        console.print("""[purple]
+        self.print("""[purple]
     Suddenly a cloud of smoke and dust covers everything, making it impossible to see what's happening around you. 
     When the dust settles you see it, it's the ancient guardian of the ruins. You had heard about it before, but 
     always thought it was just a myth. It seems like you will have to beat it to get the idol. What do you do?
     """)
 
-        console.print("""[yellow]1. Create a rope trap using your grappling hook, rope and knife.""")
-        console.print("""[green]2. Stealth approach and use your survival knife to attack.""")
-        console.print("""[blue]3. Distract and strike with your survival knife.""")
+        self.print("""[yellow]1. Create a rope trap using your grappling hook, rope and knife.""")
+        self.print("""[green]2. Stealth approach and use your survival knife to attack.""")
+        self.print("""[blue]3. Distract and strike with your survival knife.""")
 
         while True:
-            choice = input("""
+            choice = Prompt.ask("""
     Enter your choice(1, 2, 3): 
     """)
 
             if choice == "1":
-                console.print("""[purple]
+                self.print("""[purple]
     You successfully set up the rope trap and, as expected, the guardian starts to move forward. The 
     guardian's foot catches the snare, causing it to stumble and lose balance. Seizing this opportunity, 
     you rush forward and attack the vulnerable area on the guardian's back with your survival knife. The 
@@ -96,7 +95,7 @@ class RuinsFinalRoom:
                 self.health -= 3
                 break
             elif choice == "2":
-                console.print("""[purple]
+                self.print("""[purple]
     You successfully reach a position near the guardian's vulnerable spot without being detected. You 
     unleash a swift and precise attack, driving your survival knife into the weak area. The guardian lets 
     out a roar of pain, but it remains standing. Realizing that you have a limited window of opportunity, 
@@ -105,7 +104,7 @@ class RuinsFinalRoom:
                 self.health -= 3
                 break
             elif choice == "3":
-                console.print("""[purple]
+                self.print("""[purple]
     You pick a small stone from the ground and hurl it to a corner of the room, away from your intended 
     path. The guardian, being vigilant, turns its head toward the sound and moves away from its original 
     position, temporarily distracted by the false threat. You take advantage of this opportunity to move 
@@ -117,13 +116,13 @@ class RuinsFinalRoom:
                 self.health, self.stamina = item_selection(self.inventory, self.health, self.stamina)
                 continue
             else:
-                print("Enter your choice(1, 2, 3): ")
+                self.print("Enter your choice(1, 2, 3): ")
 
-        console.print("""[blue]
+        self.print("""[blue]
     Your current health is: :heart:""", self.health)
 
     def event_three(self):
-        console.print("""[purple]
+        self.print("""[purple]
     As the echoes of battle subside, the ruins' atmosphere takes on an eerie calmness. Your gaze shifts towards the 
     center of the final room, where a magnificent pedestal starts to rise from the ground. It is mesmerizing. 
     Adorned with ancient inscriptions and symbols. It becomes clear that the last obstacle standing between you and 
@@ -131,11 +130,13 @@ class RuinsFinalRoom:
     challenges to obtain the idol.
     """)
 
-        console.print("""[yellow]1. Guess the number.""")
-        console.print("""[green]2. Play hangman.""")
+        self.print("""[yellow]1. Guess the number.""")
+        self.print("""[green]2. Play hangman.""")
 
         while True:
-            selection = input("Enter your choice(1, 2)")
+            selection = Prompt.ask("""
+    Enter your choice(1, 2)
+    """)
             if selection == "1":
                 self.guess_number()
                 break
@@ -155,7 +156,7 @@ class RuinsFinalRoom:
             
             
     def guess_number(self):
-        console.print("""[purple]
+        self.print("""[purple]
     Welcome to Guess the Number!
     """)
         secret_number = random.randint(1, 100)
@@ -163,28 +164,28 @@ class RuinsFinalRoom:
         attempts = 0
 
         while attempts < max_attempts:
-            guess = int(input("Guess a number between 1 and 100. You have 8 attempts:"))
+            guess = int(Prompt.ask("Guess a number between 1 and 100. You have 8 attempts:"))
             attempts += 1
 
             if guess < secret_number:
-                console.print("""[purple]
+                self.print("""[purple]
     The number you've entered is too low!
     """)
             elif guess > secret_number:
-                console.print("""[purple]
+                self.print("""[purple]
     The number you've entered is too high!
     """)
             else:
-                console.print("""[purple]
+                self.print("""[purple]
     Congratulations! You've guessed the number!""")
                 break
 
             if attempts == max_attempts:
-                console.print("""[green]
+                self.print("""[green]
     Game Over!""")
 
     def play_hangman(self):
-        console.print("""[purple]
+        self.print("""[purple]
     Welcome to Hangman!
     """)
         words = ['treasure', 'secret', 'adventure', 'artifact', 'level', 'winner']
@@ -280,47 +281,54 @@ class RuinsFinalRoom:
                 else:
                     hidden_word += '_ '
 
-            console.print("""[purple]
+            self.print("""[purple]
     Guess the word:""", hidden_word)
-            console.print("""[purple]
+            self.print("""[purple]
     Attempts remaining:""", attempts)
-            console.print(hangman_representation[8 - attempts])
+            self.print(hangman_representation[8 - attempts])
 
             if hidden_word == chosen_word:
-                console.print("""[purple]
+                self.print("""[bold blue]
     Congratulations! You guessed the word correctly.""")
                 break
 
             if attempts == 0:
-                console.print("""[purple]
+                self.print("""[purple]
     Game over! You ran out of attempts. The word was:""", chosen_word)
                 break
 
-            guess = input("""Enter a letter: """).lower()
+            guess = Prompt.ask("""
+    Enter a letter: 
+    """).lower()
 
             if len(guess) != 1 or not guess.isalpha():
-                console.print("""[purple]
+                self.print("""[purple]
     Invalid input! Please enter a single letter.""")
                 continue
 
             if guess in guessed_letters:
-                console.print("""[purple]
+                self.print("""[purple]
     You already guessed that letter.""")
             else:
                 guessed_letters.append(guess)
                 if guess in chosen_word:
-                    console.print("""[purple]
+                    self.print("""[purple]
     Correct guess!""")
                 else:
-                    console.print("""[purple]
+                    self.print("""[purple]
     Wrong guess!""")
                     attempts -= 1
 
-            console.print()
+            self.print()
 
 
 if __name__ == "__main__":
-    user_choice = RuinsFinalRoom()
-    user_choice.event_one()
-    user_choice.event_two()
-    user_choice.event_three()
+    from rich.console import Console
+    from rich.prompt import Prompt
+    console = Console()
+
+    env = RuinsFinalRoom(self.print, Prompt.ask)
+    env.event_one()
+    env.event_two()
+    env.event_three()
+

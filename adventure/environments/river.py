@@ -43,21 +43,25 @@ class River:
     Enter your choice (1-3), enter 'i' to use an item: 
     """)
             if choice == "1":
-                self.stamina -= random.randint(1, 3)
-                self.print("""[cyan]
-    You swim across the river. It was tiring, and you lost some stamina.
+                random_stam_loss = random.randint(1, 3)
+                self.stamina -= random_stam_loss
+                self.print(f"""[cyan]
+    You swim across the river. It was tiring, and you lost [yellow]]{random_stam_loss} stamina[/yellow].
     """)
                 break
             elif choice == "2":
-                self.inventory.append("Raft")
-                self.print("""[cyan]
-    You build a makeshift raft and sail across the river. You now have a raft in your inventory.
+                # self.inventory.append("Raft")
+                random_hp_loss = random.randint(2, 4)
+                self.health -= random_hp_loss
+                self.print(f"""[cyan]
+    You build a makeshift raft and sail across the river. As you sail across, you remember that you have zero experience
+    with building a raft. The raft sinks and you are forced to swim the rest of the way. You lost [red]{random_hp_loss} 
+    health[/red] from entire ordeal!
     """)
                 break
             elif choice == "3":
-                self.stamina -= random.randint(1, 2)
                 self.print("""[cyan]
-    You find a bridge upstream and cross the river [green]safely[/green], but it tires you out a bit.
+    You find a bridge upstream and cross the river [green]safely[/green].
     """)
                 break
             elif choice == "i":
@@ -68,20 +72,20 @@ class River:
     [red]Invalid[/red] choice. Please enter a number between 1 and 3.
     """)
 
-        self.print("[white]Your current health: " + str(self.health))
-        self.print("[white]Your current stamina: " + str(self.stamina))
-        self.print("[white]Your inventory: " + str(self.inventory))
+        # self.print("[white]Your current health: " + str(self.health))
+        # self.print("[white]Your current stamina: " + str(self.stamina))
+        # self.print("[white]Your inventory: " + str(self.inventory))
 
-        if self.stamina <= 0:
-            self.health -= random.randint(2, 4)
-            self.print("""[cyan]
-    The swim drained your [yellow]stamina[/yellow], and you lost some [red]health[/red].
-    """)
-        elif self.stamina >= 10:
-            self.health += random.randint(1, 3)
-            self.print("""[cyan]
-    You handled the swim well and gained some [red]health[/red].
-    """)
+    #     if self.stamina <= 0:
+    #         self.health -= random.randint(2, 4)
+    #         self.print("""[cyan]
+    # The swim drained your [yellow]stamina[/yellow], and you lost some [red]health[/red].
+    # """)
+    #     elif self.stamina >= 10:
+    #         self.health += random.randint(1, 3)
+    #         self.print("""[cyan]
+    # You handled the swim well and gained some [red]health[/red].
+    # """)
 
     def event_two(self):
         self.print("""[cyan]
@@ -103,21 +107,26 @@ class River:
     Enter your choice (1-3), enter 'i' to use an item
     Input""")
             if choice == "1":
-                self.stamina -= random.randint(2, 4)
-                self.print("""[cyan]
-    You engage in a fierce battle. The creature hits you, and you lose some [yellow]stamina[/yellow].
+                random_hp_lost = random.randint(4, 6)
+                self.stamina -= random_hp_lost
+                self.print(f"""[cyan]
+    You take on the croc Happy Gilmore style. Except, this is anything at all like the movie! Instead you are badly 
+    injured by the crocodile! You lost [red]{random_hp_lost} HP[/red].
     """)
                 break
             elif choice == "2":
-                self.stamina -= random.randint(1, 3)
-                self.print("""[cyan]
-    You manage to evade the danger, but it tires you out.
+                random_stam_loss = random.randint(1, 3)
+                self.stamina -= random_stam_loss
+                self.print(f"""[cyan]
+    You manage to evade the danger, but it tires you out -{random_stam_loss} stamina!
     """)
                 break
             elif choice == "3":
-                self.stamina -= random.randint(1, 2)
-                self.print("""[cyan]
-    You stand your ground and face the creature. It takes a toll on your [yellow]stamina[/yellow].
+                random_stam_loss = random.randint(3, 5)
+                self.stamina -= random_stam_loss
+                self.print(f"""[cyan]
+    You stand your ground and face the creature. Bad idea! The crocodile attacks and you are forced to flee! 
+    It takes a toll on your stamina! [yellow]-{random_stam_loss} stamina[/yellow].
     """)
                 break
             elif choice == "i":
@@ -125,23 +134,23 @@ class River:
                 continue
             else:
                 self.print("""[cyan]
-    [red]Invalid[/red] choice. Please enter a number between 1 and 3.
+    [red]Invalid choice![/red]
     """)
 
-        self.print("[white]Your current health: " + str(self.health))
-        self.print("[white]Your current stamina: " + str(self.stamina))
-        self.print("[white]Your inventory: " + str(self.inventory))
+        # self.print("[white]Your current health: " + str(self.health))
+        # self.print("[white]Your current stamina: " + str(self.stamina))
+        # self.print("[white]Your inventory: " + str(self.inventory))
 
-        if self.stamina <= 0:
-            self.health -= random.randint(2, 4)
-            self.print("""[cyan]
-    The fight drained your [yellow]stamina[/yellow], and you lost some [red]health[/red].
-    """)
-        elif self.stamina >= 10:
-            self.health += random.randint(1, 3)
-            self.print("""[cyan]
-    You handled the situation well and gained some [red]health[/red].
-    """)
+    #     if self.stamina <= 0:
+    #         self.health -= random.randint(2, 4)
+    #         self.print("""[cyan]
+    # The fight drained your [yellow]stamina[/yellow], and you lost some [red]health[/red].
+    # """)
+    #     elif self.stamina >= 10:
+    #         self.health += random.randint(1, 3)
+    #         self.print("""[cyan]
+    # You handled the situation well and gained some [red]health[/red].
+    # """)
 
     def event_three(self):
         self.print("""[cyan]
@@ -171,15 +180,17 @@ class River:
                 self.print(riddle)
                 player_answer = self.prompt("   [cyan]Enter your answer: ").lower()
                 if player_answer == answer:
-                    self.health = min(self.health + random.randint(1, 3), 10)  # Ensure health doesn't exceed 10
-                    self.print("""[cyan]
-    [green]Congratulations[/green]! You solved the riddle and gained some health.
+                    health_gain = random.randint(1, 3)
+                    self.health = min(self.health + health_gain, 10)  # Ensure health doesn't exceed 10
+                    self.print(f"""[cyan]
+    [green]Congratulations[/green]! You solved the riddle and gained [red]{health_gain} health[/red].
     """)
                     break
                 else:
-                    self.health = max(self.health - random.randint(2, 4), 0)  # Ensure health doesn't go below 0
-                    self.print("""
-    Oops! Your answer is [red]incorrect[/red], and it has taken a toll on your health.
+                    health_loss = random.randint(2, 4)
+                    self.health = max(self.health - health_loss, 0)  # Ensure health doesn't go below 0
+                    self.print(f"""
+    Oops! Your answer is [red]incorrect[/red], and it has taken a toll on your health. [red]-{health_loss} HP[/red]!
     """)
                     break
             elif choice == "2":
@@ -188,7 +199,8 @@ class River:
     Type the word '[#9D00FF]challenge[/#9D00FF]' as fast as you can: 
     challenge""").lower()
                 if player_word == challenge_word:
-                    self.stamina -= random.randint(1, 3)
+                    stamina_gain = random.randint(2, 3)
+                    self.stamina += stamina_gain
                     self.print("""
     Well done! You completed the typing challenge and gained some 
     [yellow]stamina[/yellow].
@@ -209,14 +221,14 @@ class River:
     Guess the correct word: It starts with a '[green]S[/green]' and ends with a '[green]t[/green]': 
     Input""").lower()
                     if player_guess == word_to_guess:
-                        self.inventory.append(random.choice(self.items))
+                        # self.inventory.append(random.choice(self.items))
                         self.print("""[cyan]
-    [green]Congratulations[/green]! You guessed the correct word
+    [green]Congratulations[/green]! You guessed the correct word!
     """)
                         break
                     elif player_guess != word_to_guess:
                         attempts -= 1
-                        self.stamina -= random.randint(1, 2)
+                        # self.stamina -= random.randint(1, 2)
                         self.print("""[white]
     [red]Incorrect[/red] guess. Try again!
     """)
@@ -225,21 +237,23 @@ class River:
     You have {attempts} attempts left.
     """)
                 if attempts == 0:
+                    self.stamina -= random.randint(1, 2)
                     self.print("""
     You [red]failed[/red] to guess the word. No treasure for you!
     """)
                     break
+                break
             elif choice == "i":
                 self.health, self.stamina = item_selection(self.inventory, self.health, self.stamina)
                 continue
             else:
                 self.print("""
-    [red]Invalid[/red] choice. Please enter a number between 1 and 3.
+    [red]Invalid choice![/red]
     """)
 
-        self.print("[white]Your current stamina: " + str(self.stamina))
-        self.print("[white]Your current health: " + str(self.health))
-        self.print("[white]Your inventory: " + str(self.inventory))
+        # self.print("[white]Your current stamina: " + str(self.stamina))
+        # self.print("[white]Your current health: " + str(self.health))
+        # self.print("[white]Your inventory: " + str(self.inventory))
 
 
     # def prompt_continue(self):

@@ -20,15 +20,15 @@ def main():
     game = introduction()
     # game = GameLogic('survival knife')
     jungle = Jungle(console.print, Prompt.ask)
-    # desert = Desert(console.print, Prompt.ask)
-    # river = River()
-    # ruins_ent = RuinsEntrance(console.print, Prompt.ask)
-    # ruins_hall = Ruins_Halls()
-    # ruins_fr = RuinsFinalRoom()
+    desert = Desert(console.print, Prompt.ask)
+    river = River(console.print, Prompt.ask)
+    ruins_ent = RuinsEntrance(console.print, Prompt.ask)
+    ruins_hall = Ruins_Halls(console.print, Prompt.ask)
+    ruins_fr = RuinsFinalRoom()
     # envs = [jungle, river, desert, ruins_ent, ruins_hall, ruins_fr]
 
     # jungle = Jungle()
-    jungle.event_one()
+    # jungle.event_one()
     # jungle.event_two()
     # jungle.event_three()
     # jungle.event_four()
@@ -54,7 +54,7 @@ def main():
     # ruins_fr.event_one()
     # ruins_fr.event_two()
     # ruins_fr.event_three()
-    # envs = [jungle, river, desert, ruins_ent, ruins_hall, ruins_fr]
+    envs = [jungle, river, desert, ruins_ent, ruins_hall, ruins_fr]
 
     # Anthony's testing code start
     # game = GameLogic('survival knife')

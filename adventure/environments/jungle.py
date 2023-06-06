@@ -1,4 +1,4 @@
-from consumables import use_item, item_selection
+from adventure.consumables import use_item, item_selection
 import random
 
 
@@ -23,12 +23,12 @@ class Jungle:
     1. Try to squeeze through
     2. Find another path
     3. Cut through the vines and clear a path (requires [#9D00FF]Survival Knife[/#9D00FF])
-    """)
+    [/green]""")
 
         while True:
             selection = self.prompt("""[green]
-    Pick 1, 2 or 3 or 'i' to use an item.
-    """)
+    Pick 1, 2 or 3 or 'i' to use an item
+    [/green]""")
             if selection == "1":
                 rand_stam_loss = random.randint(1, 2)
                 self.stamina -= rand_stam_loss

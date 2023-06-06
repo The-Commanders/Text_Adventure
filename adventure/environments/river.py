@@ -9,7 +9,7 @@ class River:
         self.health = 10
         self.stamina = 10
         self.inventory = []
-        self.items = ["First aid spray", "Ration"]
+        self.items = []
 
 
     def display_text(self, text, color=None):

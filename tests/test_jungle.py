@@ -1,5 +1,4 @@
 import pytest
-# from adventure.game import InvalidDataTypeError
 from adventure.environments.jungle import Jungle
 from adventure.confirm_evironment import *
 from rich.console import Console

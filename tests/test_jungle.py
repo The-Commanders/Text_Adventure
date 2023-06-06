@@ -203,7 +203,7 @@ def test_jungle_event_two_c2():
     confirm_environment(Jungle, "event_two", expected_text, simulated_choice, random_ints)
 
 
-def test_jungle_event_two_c3():
+def test_jungle_event_two_c3_with_rope():
     expected_text = """
      [green]
     As you are walking through the jungle, you come across a pitfall trap that seems 
@@ -223,6 +223,35 @@ def test_jungle_event_two_c3():
 
     sim_choice = ["3"]
     random_ints = [2]
+
+    confirm_environment(Jungle, "event_two", expected_text, sim_choice, random_ints)
+
+
+def test_jungle_event_two_c3_without_rope():
+    expected_text = """
+ [green]
+    As you are walking through the jungle, you come across a pitfall trap that seems 
+    to have been triggered. You peer into the trap to see the remains of a another person 
+    who unfortunately triggered the trap...
+
+    1. Jump over the trap
+    2. Find another path
+    3. Safely swing across the trap ([#9D00FF]requires Rope[/#9D00FF])
+    
+[green]
+    Pick 1, 2 or 3 or 'i' to use an item.
+    : 3
+You do not have any rope!
+[green]
+    Pick 1, 2 or 3 or 'i' to use an item.
+    : 1
+[green]
+    You have a bad running start and as a result, you barely clear the gap
+    and injure yourself a little. -[yellow]2 stamina[/yellow], -[red]1 HP[/red]! 
+    """
+
+    sim_choice = ["3", "1"]
+    random_ints = [2, 1]
 
     confirm_environment(Jungle, "event_two", expected_text, sim_choice, random_ints)
 

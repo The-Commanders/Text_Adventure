@@ -97,7 +97,7 @@ def final(health, stamina):
     """, default="yes")
     while play_again:
         if play_again == "yes":
-            pass
+            return
         elif play_again == "quit":
             console.print("""[bold yellow]
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

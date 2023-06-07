@@ -34,10 +34,11 @@ class Ruins_Halls:
     Enter your choice (1-3), enter 'i' to use an item: 
     """)
             if choice == '1':
-                self.stamina -= random.randint(1, 2)
-                self.print("""[blue]
+                stam_gain = random.randint(1, 2)
+                self.stamina += stam_gain
+                self.print(f"""[blue]
     You carefully inspect the artifact and find a hidden compartment. 
-    Inside, you discover a valuable gem. Your [yellow]stamina[/yellow] decreases slightly.
+    Inside, you discover a valuable gem. This gem is brimming with energy! You gain [yellow]+{stam_gain} stamina[/yellow]!
     """)
                 break
             elif choice == '2':
@@ -46,10 +47,11 @@ class Ruins_Halls:
     """)
                 break
             elif choice == '3':
-                self.stamina -= random.randint(2, 3)
-                self.print("""[blue]
-    You decide to take the artifact with you, but it's heavy and tires you out. 
-    Your [yellow]stamina[/yellow] decreases.
+                stam_loss = random.randint(2, 3)
+                self.stamina -= stam_loss
+                self.print(f"""[blue]
+        You decide to take the artifact with you, but picking it up triggers an arrow trap! You maneuver and avoid the
+        arrows in a panic! Fortunately you escape unscathed, however, now worn out! [yellow] - {stam_loss} stamina[/yellow].
     """)
                 break
             elif choice == "i":

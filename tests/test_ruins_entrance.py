@@ -24,38 +24,40 @@ def test_ruins_ent_event_one_c1():
     It seems like the door to get into the ruins is closed and you don't have the key. How would you like
     to proceed in order to gain access to the ruins?
     1. Climb the wall using your grappling hook.
-    2. Try and pick the lock with your survival knife
+    2. Try and pick the lock.
     3. Try and find the key somewhere around.
 [#FFA500]
     Enter your choice(1, 2, 3), enter 'i' to use an item:
 : 1
+You do not have a grappling hook!
 [#FFA500]
-    You managed to enter the ruins, but at a great expense. You are drained of stamina.
+    Enter your choice(1, 2, 3), enter 'i' to use an item:
+: 2
+[#FFA500]
+    Did you really think you would be able to pick the lock? You've made a great effort but accomplished nothing.
     """
 
-    sim_choice = ["1"]
+    sim_choice = ["1", "2"]
 
     confirm_environment(RuinsEntrance, "event_one", expected_text, sim_choice)
 
 
 def test_ruins_ent_event_one_c2():
     expected_text = """
-  [#FFA500]
+ [#FFA500]
     Congratulations, you've made it to the ruins. You are one step closer to getting the idol. However, in 
     order to get your hands on it you will have to test your strength and wit a few more times.
     
     It seems like the door to get into the ruins is closed and you don't have the key. How would you like
     to proceed in order to gain access to the ruins?
     1. Climb the wall using your grappling hook.
-    2. Try and pick the lock with your survival knife
+    2. Try and pick the lock.
     3. Try and find the key somewhere around.
 [#FFA500]
     Enter your choice(1, 2, 3), enter 'i' to use an item:
 : 2
 [#FFA500]
-    Did you really think you would be able to pick the lock? You've made a great effort but
-    accomplished nothing.
-
+    Did you really think you would be able to pick the lock? You've made a great effort but accomplished nothing.
         """
 
     sim_choice = ["2"]
@@ -65,21 +67,20 @@ def test_ruins_ent_event_one_c2():
 
 def test_ruins_ent_event_one_c3():
     expected_text = """
- [#FFA500]
+  [#FFA500]
     Congratulations, you've made it to the ruins. You are one step closer to getting the idol. However, in 
     order to get your hands on it you will have to test your strength and wit a few more times.
     
     It seems like the door to get into the ruins is closed and you don't have the key. How would you like
     to proceed in order to gain access to the ruins?
     1. Climb the wall using your grappling hook.
-    2. Try and pick the lock with your survival knife
+    2. Try and pick the lock.
     3. Try and find the key somewhere around.
 [#FFA500]
     Enter your choice(1, 2, 3), enter 'i' to use an item:
 : 3
 [#FFA500]
     That was a long and unsuccessful walk. The key is nowhere to be found, just like your energy.
-
         """
 
     sim_choice = ["3"]
@@ -89,7 +90,7 @@ def test_ruins_ent_event_one_c3():
 
 def test_ruins_ent_event_two_c1():
     expected_text = """
- [#FFA500]
+[#FFA500]
     Congratulations, you've made it to the ruins. You are one step closer to getting the idol. However, in 
     order to get your hands on it you will have to test your strength and wit a few more times.
     
@@ -101,13 +102,15 @@ def test_ruins_ent_event_two_c1():
 [#FFA500]
     Enter your choice(1, 2, 3), enter 'i' to use an item:  
     : 1
+[#FFA500]You do not have a survival knife!
 [#FFA500]
-    There are way too many to kill them all and they are attacking you.
-
-
+    Enter your choice(1, 2, 3), enter 'i' to use an item:  
+    : 3
+[#FFA500]
+    You have fallen down the wall trying to climb back up and have hurt yourself.
      """
 
-    sim_choice = ["1"]
+    sim_choice = ["1", "3"]
 
     confirm_environment(RuinsEntrance, "event_two", expected_text, sim_choice)
 
@@ -231,7 +234,7 @@ def test_ruins_ent_event_three_c3_correct():
     Enter your choice(1, 2, 3), enter 'i' to use an item:  
     : 3
 [#FFA500]
-    Unscramble the word: LGOVNEIRNEMT
+    Unscramble the word: TNVMERONG
     
 [#FFA500]
     Enter your answer: 
@@ -261,7 +264,7 @@ def test_ruins_ent_event_three_c3_incorrect():
     Enter your choice(1, 2, 3), enter 'i' to use an item:  
     : 3
 [#FFA500]
-    Unscramble the word: LGOVNEIRNEMT
+    Unscramble the word: TNVMERONG
     
 [#FFA500]
     Enter your answer: 
@@ -269,7 +272,7 @@ def test_ruins_ent_event_three_c3_incorrect():
 [#FFA500]
     [red]Incorrect[/red]. Looks like your unlucky this time..
     [#FFA500]
-    Unscramble the word: LGOVNEIRNEMT
+    Unscramble the word: TNVMERONG
     
 [#FFA500]
     Enter your answer: 

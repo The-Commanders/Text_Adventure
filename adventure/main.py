@@ -33,8 +33,8 @@ def main():
         game.add_environment(env)
 
     game.traverse_environments()
-
-    final(game.health, game.stamina)
+    if game.health > 0:
+        final(game.health, game.stamina)
 
 
 if __name__ == "__main__":

@@ -46,7 +46,7 @@ class River:
                 random_stam_loss = random.randint(1, 3)
                 self.stamina -= random_stam_loss
                 self.print(f"""[cyan]
-    You swim across the river. It was tiring, and you lost [yellow]]{random_stam_loss} stamina[/yellow].
+    You swim across the river. It was tiring, and you lost [yellow]{random_stam_loss} stamina[/yellow].
     """)
                 break
             elif choice == "2":

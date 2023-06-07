@@ -28,7 +28,7 @@ def test_river_event_one_c1():
     Enter your choice (1-3), enter 'i' to use an item: 
     : 1
 [cyan]
-    You swim across the river. It was tiring, and you lost [yellow]]3 stamina[/yellow].
+    You swim across the river. It was tiring, and you lost [yellow]3 stamina[/yellow].
     """
 
     simulated_choice = ["1"]

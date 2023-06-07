@@ -184,7 +184,7 @@ def test_final_room_event_two_c3():
 
 def test_final_room_event_three_c1():
     expected_text = """
-      [purple]
+ [purple]
     As you step into the final room, you hear a voice echoing throughout the room. "Hello adventurer, let's see if  
     you are worthy, step forward and pick a challenge".
     You step forward and read on the wall...
@@ -201,13 +201,14 @@ Guess a number between 1 and 100. You have 8 attempts:: 25
 [purple]
     The number you've entered is too low!
     
-Guess a number between 1 and 100. You have 8 attempts:: 75
+Guess a number between 1 and 100. You have 7 attempts:: 75
 [purple]
     The number you've entered is too high!
     
-Guess a number between 1 and 100. You have 8 attempts:: 50
+Guess a number between 1 and 100. You have 6 attempts:: 50
 [purple]
     Congratulations! You've guessed the number!
+
     """
     simulated_choice = ["1", "25", "75", "50"]
     random_int = [50]

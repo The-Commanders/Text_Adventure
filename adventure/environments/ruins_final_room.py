@@ -149,18 +149,18 @@ class RuinsFinalRoom:
     Welcome to Guess the Number!
     """)
         secret_number = random.randint(1, 100)
-        max_attempts = 8
-        attempts = 0
+        attempts = 8
 
-        while attempts < max_attempts:
-            guess = int(self.prompt("Guess a number between 1 and 100. You have 8 attempts:"))
-            attempts += 1
+        while attempts > 0:
+            guess = int(self.prompt(f"Guess a number between 1 and 100. You have {attempts} attempts:"))
 
             if guess < secret_number:
+                attempts -= 1
                 self.print("""[purple]
     The number you've entered is too low!
     """)
             elif guess > secret_number:
+                attempts -= 1
                 self.print("""[purple]
     The number you've entered is too high!
     """)
@@ -169,9 +169,10 @@ class RuinsFinalRoom:
     Congratulations! You've guessed the number!""")
                 break
 
-            if attempts == max_attempts:
+            if attempts == 0:
                 self.print("""[green]
     Game Over!""")
+                break
 
     def play_hangman(self):
         self.print("""[purple]

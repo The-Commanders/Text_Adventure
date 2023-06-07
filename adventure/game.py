@@ -1,5 +1,7 @@
 import random
+import os
 from rich.console import Console
+from rich.prompt import Prompt
 
 
 console = Console()
@@ -16,11 +18,11 @@ class Environment:
 
 # Game Logic class
 class GameLogic:
-    def __init__(self, starting_item):
+    def __init__(self, starting_item=None):
         self.head = None
         self.health = 10
         self.stamina = 10
-        self.inventory = [starting_item, "med spray", "ration"]
+        self.inventory = [starting_item]
         self.items = ["survival knife", "grappling hook", "rope", "med spray", "ration"]
 
     def __str__(self):
@@ -42,11 +44,14 @@ class GameLogic:
         current = self.head
         while current is not None:
             # console.print(f"[green] The current environment is: {str(current.data.name)} [/green]")
+            os.system('clear')
             self.add_resources(current)
+            self.say_resources(current)
             # print("Current Health: ", current.data.health)
             # print("Current Stamina: ", current.data.stamina)
             # print("Current Items: ", " ".join(current.data.inventory))
             self.trigger_random_event(current.data)
+            next = Prompt.ask("Please press enter to continue", default="continue", show_default=False)
             if current.data.health < 1:
                 self.update_resources(current)
                 self.game_over()
@@ -112,7 +117,7 @@ class GameLogic:
         current_node.data.inventory = self.inventory
 
     def game_over(self):
-        print("""
+        console.print("""
 ┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼
 ███▀▀▀██┼███▀▀▀███┼███▀█▄█▀███┼██▀▀▀
 ██┼┼┼┼██┼██┼┼┼┼┼██┼██┼┼┼█┼┼┼██┼██┼┼┼
@@ -140,6 +145,10 @@ class GameLogic:
 ┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼
 """)
 
+    def say_resources(self, data):
+        console.print(f"[red]Health[/red] {''.join([':orange_heart:' for _ in range(data.data.health)])}")
+        console.print(f"[yellow]Stamina[/yellow] {''.join([':meat_on_bone:' for _ in range(data.data.stamina)])}")
+        console.print(f"[white]Items List[/white] {''.join(data.data.inventory)}")
 
 class InvalidDataTypeError(Exception):
     pass

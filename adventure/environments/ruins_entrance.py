@@ -49,7 +49,7 @@ class RuinsEntrance:
                 self.stamina -= 1
                 break
             elif choice == "i":
-                self.health, self.stamina = item_selection(self.inventory, self.health, self.stamina)
+                self.health, self.stamina = item_selection(self.inventory, self.health, self.stamina, self.print, self.prompt)
                 continue
             else:
                 continue
@@ -90,7 +90,7 @@ class RuinsEntrance:
                 self.health -= 3
                 break
             elif choice == "i":
-                self.health, self.stamina = item_selection(self.inventory, self.health, self.stamina)
+                self.health, self.stamina = item_selection(self.inventory, self.health, self.stamina, self.print, self.prompt)
                 continue
             else:
                 continue
@@ -150,7 +150,7 @@ class RuinsEntrance:
     """)
                 break
             elif choice == "i":
-                self.health, self.stamina = item_selection(self.inventory, self.health, self.stamina)
+                self.health, self.stamina = item_selection(self.inventory, self.health, self.stamina, self.print, self.prompt)
                 continue
             else:
                 continue

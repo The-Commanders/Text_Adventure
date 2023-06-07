@@ -36,15 +36,15 @@ class RuinsFinalRoom:
         self.print("""[blue]3. Create a bridge.""")
 
         while True:
-            choice = Prompt.ask("""
+            choice = self.prompt("""
     Enter your choice(1, 2, 3) 
     """)
             if choice == "1":
+                self.stamina -= 2
                 self.print("""[purple]
     You throw your grappling hook into a sturdy structure above. The hook catches onto the surface and 
-    you leap off the collapsing ground and swing across the room to stable ground.
+    you leap off the collapsing ground and swing across the room to stable ground. [yellow]-2 stamina[/yellow]
     """)
-                self.stamina -= 2
                 break
             elif choice == "2":
                 self.print("""[purple]
@@ -63,13 +63,13 @@ class RuinsFinalRoom:
                 self.stamina -= 3
                 break
             elif choice == "i":
-                self.health, self.stamina = item_selection(self.inventory, self.health, self.stamina)
+                self.health, self.stamina = item_selection(self.inventory, self.health, self.stamina, self.print, self.prompt)
                 continue
             else:
-                print("Enter your choice(1, 2, 3): ")
+                self.print("Enter your choice(1, 2, 3): ")
 
-        self.print("""[blue]
-        Your current stamina is: :meat:""", self.stamina)
+        # self.print("""[blue]
+        # Your current stamina is: :meat:""", self.stamina)
 
     def event_two(self):
         self.print("""[purple]
@@ -83,7 +83,7 @@ class RuinsFinalRoom:
         self.print("""[blue]3. Distract and strike with your survival knife.""")
 
         while True:
-            choice = Prompt.ask("""
+            choice = self.prompt("""
     Enter your choice(1, 2, 3): 
     """)
 
@@ -115,13 +115,13 @@ class RuinsFinalRoom:
                 self.health -= 1
                 break
             elif choice == "i":
-                self.health, self.stamina = item_selection(self.inventory, self.health, self.stamina)
+                self.health, self.stamina = item_selection(self.inventory, self.health, self.stamina, self.print, self.prompt)
                 continue
             else:
                 self.print("Enter your choice(1, 2, 3): ")
 
-        self.print("""[blue]
-    Your current health is: :heart:""", self.health)
+    #     self.print("""[blue]
+    # Your current health is: :heart:""", self.health)
 
     def event_three(self):
         self.print("""[purple]
@@ -136,7 +136,7 @@ class RuinsFinalRoom:
         self.print("""[green]2. Play hangman.""")
 
         while True:
-            selection = Prompt.ask("""
+            selection = self.prompt("""
     Enter your choice(1, 2)
     """)
             if selection == "1":
@@ -146,7 +146,7 @@ class RuinsFinalRoom:
                 self.play_hangman()
                 break
             elif selection == "i":
-                self.health, self.stamina = item_selection(self.inventory, self.health, self.stamina)
+                self.health, self.stamina = item_selection(self.inventory, self.health, self.stamina, self.print, self.prompt)
                 continue
 
             # if option1_completed and option2_completed:
@@ -166,7 +166,7 @@ class RuinsFinalRoom:
         attempts = 0
 
         while attempts < max_attempts:
-            guess = int(Prompt.ask("Guess a number between 1 and 100. You have 8 attempts:"))
+            guess = int(self.prompt("Guess a number between 1 and 100. You have 8 attempts:"))
             attempts += 1
 
             if guess < secret_number:
@@ -329,7 +329,7 @@ if __name__ == "__main__":
     from rich.prompt import Prompt
     console = Console()
 
-    env = RuinsFinalRoom(self.print, Prompt.ask)
+    env = RuinsFinalRoom(console.print, Prompt.ask)
     env.event_one()
     env.event_two()
     env.event_three()

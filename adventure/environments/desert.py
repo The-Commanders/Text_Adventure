@@ -68,7 +68,7 @@ class Desert:
     You do not have a [i #9D00FF]ration[/i #9D00FF] in your inventory. Please type 1 or 2.
 """)
             elif choice == "i":
-                self.health, self.stamina = item_selection(self.inventory, self.health, self.stamina)
+                self.health, self.stamina = item_selection(self.inventory, self.health, self.stamina, self.print, self.prompt)
                 continue
             else:
                 self.print("[yellow]Please type 1, 2, or 3[/yellow]")
@@ -153,7 +153,7 @@ class Desert:
     please type 1 or 2.
 """)
             elif choice == "i":
-                self.health, self.stamina = item_selection(self.inventory, self.health, self.stamina)
+                self.health, self.stamina = item_selection(self.inventory, self.health, self.stamina, self.print, self.prompt)
                 continue
             else:
                 self.print("""[yellow]
@@ -251,7 +251,7 @@ class Desert:
     """)
                 break
             elif choice == "i":
-                self.health, self.stamina = item_selection(self.inventory, self.health, self.stamina)
+                self.health, self.stamina = item_selection(self.inventory, self.health, self.stamina, self.print, self.prompt)
                 continue
             else:
                 continue

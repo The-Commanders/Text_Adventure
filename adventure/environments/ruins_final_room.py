@@ -63,7 +63,7 @@ class RuinsFinalRoom:
                 self.stamina -= 3
                 break
             elif choice == "i":
-                self.health, self.stamina = item_selection(self.inventory, self.health, self.stamina)
+                self.health, self.stamina = item_selection(self.inventory, self.health, self.stamina, self.print, self.prompt)
                 continue
             else:
                 self.print("Enter your choice(1, 2, 3): ")
@@ -115,7 +115,7 @@ class RuinsFinalRoom:
                 self.health -= 1
                 break
             elif choice == "i":
-                self.health, self.stamina = item_selection(self.inventory, self.health, self.stamina)
+                self.health, self.stamina = item_selection(self.inventory, self.health, self.stamina, self.print, self.prompt)
                 continue
             else:
                 self.print("Enter your choice(1, 2, 3): ")
@@ -146,7 +146,7 @@ class RuinsFinalRoom:
                 self.play_hangman()
                 break
             elif selection == "i":
-                self.health, self.stamina = item_selection(self.inventory, self.health, self.stamina)
+                self.health, self.stamina = item_selection(self.inventory, self.health, self.stamina, self.print, self.prompt)
                 continue
 
             # if option1_completed and option2_completed:

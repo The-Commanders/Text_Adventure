@@ -108,7 +108,7 @@ class River:
     Input""")
             if choice == "1":
                 random_hp_lost = random.randint(4, 6)
-                self.stamina -= random_hp_lost
+                self.health -= random_hp_lost
                 self.print(f"""[cyan]
     You take on the croc Happy Gilmore style. Except, this is anything at all like the movie! Instead you are badly 
     injured by the crocodile! You lost [red]{random_hp_lost} HP[/red].

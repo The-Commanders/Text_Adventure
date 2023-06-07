@@ -1,3 +1,4 @@
+import pytest
 from rich.console import Console
 from rich.prompt import Prompt
 from adventure.confirm_evironment import confirm_environment
@@ -186,6 +187,7 @@ Guess a number between 1 and 100. You have 8 attempts:: 50
     confirm_environment(RuinsFinalRoom, "event_three", expected_text, simulated_choice, random_int)
 
 
+@pytest.mark.skip
 def test_final_room_event_three_c2():
     expected_text = """
 

@@ -141,8 +141,12 @@ class Jungle:
                     self.print("""[green]
     Correct! You've recovered some health and stamina
     """)
-                    self.health += 1
-                    self.stamina += 1
+                    if self.health < 10:
+                        self.health += 1
+
+                    if self.stamina < 10:
+                        self.stamina += 1
+
                 else:
                     self.print('[red]   Incorrect.')
             elif selection == "2":
@@ -156,8 +160,12 @@ class Jungle:
                     self.print("""[green]
     Correct! You've recovered some health and stamina
     """)
-                    self.health += 1
-                    self.stamina += 1
+                    if self.health < 10:
+                        self.health += 1
+
+                    if self.stamina < 10:
+                        self.stamina += 1
+
                 else:
                     self.print("""[red]
     Incorrect.

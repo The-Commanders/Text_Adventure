@@ -24,7 +24,7 @@ class RuinsEntrance:
     It seems like the door to get into the ruins is closed and you don't have the key. How would you like
     to proceed in order to gain access to the ruins?
     1. Climb the wall using your grappling hook.
-    2. Try and pick the lock with your survival knife
+    2. Try and pick the lock.
     3. Try and find the key somewhere around.""")
 
         while True:
@@ -32,15 +32,18 @@ class RuinsEntrance:
     Enter your choice(1, 2, 3), enter 'i' to use an item:
 """)
             if choice == "1":
-                self.print("""[#FFA500]
+                if "grappling hook" in self.inventory:
+                    self.print("""[#FFA500]
     You managed to enter the ruins, but at a great expense. You are drained of stamina.
     """)
-                self.stamina -= 3
-                break
+                    self.stamina -= 3
+                    break
+                else:
+                    self.print(f"You do not have a grappling hook!")
+                    continue
             elif choice == "2":
                 self.print("""[#FFA500]
-    Did you really think you would be able to pick the lock? You've made a great effort but
-    accomplished nothing.""")
+    Did you really think you would be able to pick the lock? You've made a great effort but accomplished nothing.""")
                 self.stamina -= 2
                 break
             elif choice == "3":
@@ -72,11 +75,15 @@ class RuinsEntrance:
     Enter your choice(1, 2, 3), enter 'i' to use an item:  
     """)
             if choice == "1":
-                self.print("""[#FFA500]
+                if "survival knife" in self.inventory:
+                    self.print("""[#FFA500]
     There are way too many to kill them all and they are attacking you.
     """)
-                self.health -= 4
-                break
+                    self.health -= 4
+                    break
+                else:
+                    self.print("""[#FFA500]You do not have a survival knife!""")
+                    continue
             elif choice == "2":
                 self.print("""[#FFA500]
     You are one fast runner! You've made it without loosing any health.
@@ -120,8 +127,12 @@ class RuinsEntrance:
                         self.print("    [green]Correct[/green]! You've recovered some [red]health[/red] and [yellow]stamina[/yellow]")
                         # self.inventory.append(random.choice(self.items))
 
-                        self.health += 1
-                        self.stamina += 1
+                        if self.health < 10:
+                            self.health += 1
+
+                        if self.stamina < 10:
+                            self.stamina += 1
+
                         break
 
                     else:
@@ -141,8 +152,12 @@ class RuinsEntrance:
     """)
                     if user_input.lower() == "government":
                         self.print("    [green]Correct!")
-                        self.health += 1
-                        self.stamina += 1
+                        if self.health < 10:
+                            self.health += 1
+
+                        if self.stamina < 10:
+                            self.stamina += 1
+
                         break
                     else:
                         self.print("""[#FFA500]

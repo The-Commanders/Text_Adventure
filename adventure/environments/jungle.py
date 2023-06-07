@@ -175,11 +175,6 @@ class Jungle:
                 self.play_rock_paper_scissors()
             break
 
-        self.print(f"""[green]
-    Your current health is:", [red]{self.health}[/red]
-    Your current stamina is: [yellow]{self.stamina}[/yellow]
-    """)
-
     def play_rock_paper_scissors(self):
         self.print("""[green]
     Welcome to Rock, Paper, Scissors!

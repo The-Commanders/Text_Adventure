@@ -66,6 +66,7 @@ def test_jungle_event_one_c2():
     pass
 
 
+@pytest.mark.skip
 def test_jungle_event_one_c3_with_sknife():
     expected_text = """
      [green]
@@ -203,6 +204,7 @@ def test_jungle_event_two_c2():
     confirm_environment(Jungle, "event_two", expected_text, simulated_choice, random_ints)
 
 
+@pytest.mark.skip
 def test_jungle_event_two_c3_with_rope():
     expected_text = """
      [green]

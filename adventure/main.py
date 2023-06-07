@@ -36,5 +36,6 @@ def main():
 
     final(game.health, game.stamina)
 
+
 if __name__ == "__main__":
     main()

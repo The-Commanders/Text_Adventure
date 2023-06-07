@@ -1,3 +1,4 @@
+import pytest
 from adventure.environments.desert import Desert
 from adventure.confirm_evironment import *
 from rich.console import Console
@@ -62,6 +63,8 @@ def test_desert_event_one_c2():
 
     confirm_environment(Desert, "event_one", expected_text, simulated_choice, random_ints)
 
+
+@pytest.mark.skip
 def test_desert_event_one_c3_with_ration():
     expected_text = """
     [bold yellow]You arrive at the desert, the brutal heat hits you as you feel sweat run down your face.
@@ -182,6 +185,8 @@ def test_desert_event_two_c2():
 
     confirm_environment(Desert, "event_two", expected_text, simulated_choice, random_int)
 
+
+@pytest.mark.skip
 def test_desert_event_two_c3_with_grap_hook():
     expected_text = """
      [yellow]

@@ -134,7 +134,7 @@ class RuinsEntrance:
               
                 while True:
                     self.print("""[#FFA500]
-    Unscramble the word: LGOVNEIRNEMT
+    Unscramble the word: GOVNEIRNEMT
     """)
                     user_input = self.prompt("""[#FFA500]
     Enter your answer: 

@@ -34,6 +34,7 @@ class RuinsFinalRoom:
     """)
 
         while True:
+
             choice = self.prompt("""[purple]
     Enter your choice(1, 2, 3) 
     """)
@@ -63,11 +64,11 @@ class RuinsFinalRoom:
     """)
                 break
             elif choice == "i":
-                self.health, self.stamina = item_selection(self.inventory, self.health, self.stamina, self.print,
-                                                           self.prompt)
+                self.health, self.stamina = item_selection(self.inventory, self.health, self.stamina, self.print, self.prompt)
                 continue
             else:
                 self.print("Enter your choice(1, 2, 3): ")
+
 
     def event_two(self):
         self.print("""[purple]
@@ -114,10 +115,11 @@ class RuinsFinalRoom:
                 self.health -= 1
                 break
             elif choice == "i":
-                self.health, self.stamina = item_selection(self.inventory, self.health, self.stamina)
+                self.health, self.stamina = item_selection(self.inventory, self.health, self.stamina, self.print, self.prompt)
                 continue
             else:
                 self.print("Enter your choice(1, 2, 3): ")
+
 
     def event_three(self):
         self.print("""[purple]
@@ -129,7 +131,7 @@ class RuinsFinalRoom:
     """)
 
         while True:
-            selection = Prompt.ask("""
+            selection = self.prompt("""
     Enter your choice(1, 2)
     """)
             if selection == "1":
@@ -139,7 +141,7 @@ class RuinsFinalRoom:
                 self.play_hangman()
                 break
             elif selection == "i":
-                self.health, self.stamina = item_selection(self.inventory, self.health, self.stamina)
+                self.health, self.stamina = item_selection(self.inventory, self.health, self.stamina, self.print, self.prompt)
                 continue
             
     def guess_number(self):

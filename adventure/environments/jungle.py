@@ -111,7 +111,7 @@ class Jungle:
                 else:
                     self.print(f"You do not have any rope!")
             elif selection == "i":
-                self.health, self.stamina = item_selection(self.inventory, self.health, self.stamina)
+                self.health, self.stamina = item_selection(self.inventory, self.health, self.stamina, self.print, self.prompt)
                 continue
             else:
                 self.print("[green]Please pick 1, 2, or 3 or 'i'.")
@@ -291,7 +291,7 @@ class Jungle:
     It is very traumatizing... -[red]1 HP[/red], -[yellow]1 stamina[/yellow]!""")
                 break
             elif selection == "i":
-                self.health, self.stamina = item_selection(self.inventory, self.health, self.stamina)
+                self.health, self.stamina = item_selection(self.inventory, self.health, self.stamina, self.print, self.prompt)
                 continue
             else:
                 self.print("""[green]

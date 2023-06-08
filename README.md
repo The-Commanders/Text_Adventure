@@ -2,10 +2,26 @@
 
 Made by: Anthony Lopez, Araceli Garcia, Brenden Moore, Deiosha Sparks
 
-Text Adventure is a Command Line Interface game that changes as you play! 
-You are an treasure hunter in search of a mystical idol said to grant youth and luck to anyone that drinks from its cup. You decide to seek out this idol in the ancient ruins of the dangerous Anradesha jungle. You drop out of a helicopter a few miles from the resting place of the idol. You now have a decision to make, what starting piece of equipment will you take? Choose between a grappling hook and first aid med. (Maybe other items) You dont know whats in store for you in this jungle, but thats for you to decide!!
+Text Adventure is a Command Line Interface game that immerses you in an ever-changing experience! Embark on an epic quest as a treasure hunter, determined to find the mystical idol hidden deep within the treacherous Anradesha jungle. Legends speak of the idol's ability to bestow eternal youth and extraordinary luck upon those who drink from its sacred cup. Your adventure begins as you descend from a helicopter, landing a few miles away from the idol's resting place.
+## Key Features:
+Player Health: Monitor your character's health as you navigate the dangerous jungle.
+Player Stamina: Keep track of your character's stamina to manage physical exertion and make strategic decisions.
+Inventory System: Collect and manage various items that aid you on your journey.
+
+## Gameplay Overview:
+In Text Adventure, you take control of a daring treasure hunter ready to face the perils of the Anradesha jungle. As the game progresses, your choices and actions will shape the outcome of your adventure. The narrative unfolds through descriptive text, and you'll be presented with choices that determine your character's fate.
+
+## Starting Equipment:
+At the beginning of your quest, you must decide which starting piece of equipment to bring with you. Choose wisely, as it may greatly impact your survival. You have the following options: Med Spray and rope. 
+
+## Health and Stamina:
+Throughout the game, your character's health and stamina will be crucial for your survival. Be mindful of your health as injuries sustained during encounters may affect your progress. Stamina management is vital, as physically demanding actions and prolonged exploration can drain your energy. Make wise choices to ensure your character remains strong and capable.
+
+
 
 [Team Trello Board](https://trello.com/b/AjdJiG3i/text-adventure)
+
+
 
 Domain Model
 ![Domain Model](./Screenshots/DomainModel.png)

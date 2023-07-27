@@ -8,6 +8,19 @@ Player Health: Monitor your character's health as you navigate the dangerous jun
 Player Stamina: Keep track of your character's stamina to manage physical exertion and make strategic decisions.
 Inventory System: Collect and manage various items that aid you on your journey.
 
+## Running the game:
+To run Text adventure, open up a Terminal. Full screen for best experience.
+
+- Make sure to create your virtual environment...
+
+        source .venv/bin/activate
+
+- Type the following command in the Terminal to start up a game...
+
+      python -m adventure.main
+
+- To stop a game, press control c.
+
 ## Gameplay Overview:
 In Text Adventure, you take control of a daring treasure hunter ready to face the perils of the Anradesha jungle. As the game progresses, your choices and actions will shape the outcome of your adventure. The narrative unfolds through descriptive text, and you'll be presented with choices that determine your character's fate.
 
